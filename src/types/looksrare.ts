@@ -3,7 +3,7 @@ import { BigNumberish, BytesLike } from "ethers";
 /**
  * @see https://github.com/LooksRare/looksrare-sdk/blob/master/src/types/orders.ts
  */
-export type MakerOrder = {
+export type LooksrareMakerOrder = {
   isOrderAsk: boolean; // Whether the order is an ask (sending a passive order to sell a NFT) or a bid (sending a passive order to buy an NFT).[true --> ask / false --> bid]
   signer: string; // signer address of the maker order
   collection: string; // collection address
@@ -19,14 +19,14 @@ export type MakerOrder = {
   params: any[]; // params (e.g., price, target account for private sale)
 };
 
-export type MakerOrderWithEncodedParams = {
+export type LooksrareMakerOrderWithEncodedParams = {
   params: BytesLike;
-} & Omit<MakerOrder, "params">;
+} & Omit<LooksrareMakerOrder, "params">;
 
-/** MakerOrderWithSignature matches the type used for API order mutations and contract calls. */
-export type MakerOrderWithSignature = {
+/** LooksrareMakerOrderWithSignature matches the type used for API order mutations and contract calls. */
+export type LooksrareMakerOrderWithSignature = {
   signature: string;
-} & MakerOrder;
+} & LooksrareMakerOrder;
 
 /** MakerOrderWithVRS match the type sent to the contract when executing a trade */
 export type MakerOrderWithVRS = {
@@ -34,7 +34,7 @@ export type MakerOrderWithVRS = {
   r: string;
   s: string;
   params: BytesLike;
-} & Omit<MakerOrder, "params">;
+} & Omit<LooksrareMakerOrder, "params">;
 
 export type TakerOrder = {
   isOrderAsk: boolean; // true --> ask / false --> bid

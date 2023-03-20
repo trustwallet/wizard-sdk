@@ -1,16 +1,16 @@
-export enum Side {
+export enum BlurIoSide {
   Buy,
   Sell,
 }
 
-export type Fee = {
+export type BlurIoFee = {
   rate: string;
   recipient: string;
 };
 
-export type Order = {
+export type BlurIoOrder = {
   trader: string;
-  side: Side;
+  side: BlurIoSide;
   matchingPolicy: string;
   collection: string;
   tokenId: string;
@@ -20,7 +20,7 @@ export type Order = {
   listingTime: string;
   /* Order expiration timestamp - 0 for oracle cancellations. */
   expirationTime: string;
-  fees: Fee[];
+  fees: BlurIoFee[];
   salt: string;
   extraParams: string;
 };
