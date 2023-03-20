@@ -6,9 +6,15 @@
   "repository": "git@github.com:trustwallet/wizard-sdk.git",
   "author": "Abdou <118254027+a6-dou@users.noreply.github.com>",
   "license": "MIT",
+  "scripts": {
+    "test": "jest"
+  },
   "devDependencies": {
+    "@types/jest": "^29.5.0",
     "eslint-config-prettier": "^8.7.0",
+    "jest": "^29.5.0",
     "prettier": "^2.8.4",
+    "ts-jest": "^29.0.5",
     "typescript": "^5.0.2"
   },
   "dependencies": {
