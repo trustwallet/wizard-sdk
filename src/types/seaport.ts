@@ -27,6 +27,7 @@ export type SeaPortPayload = {
   salt: string;
   conduitKey: string;
   counter: string;
+  totalOriginalConsiderationItems: string;
 };
 
 export enum SeaPortItemType {
