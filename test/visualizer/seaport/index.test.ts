@@ -11,11 +11,11 @@ import {
 } from "./data";
 
 describe("visualizer", () => {
-  describe("seaport v1.4", () => {
+  describe("seaport v1.1", () => {
     const seaPortDomainVersion2: Domain = {
       verifyingContract: "0x00000000006c3852cbEf3e08E8dF289169EdE581",
       name: "Seaport",
-      version: "1.2",
+      version: "1.1",
       chainId: "1",
     };
 
