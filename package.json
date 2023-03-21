@@ -5,7 +5,7 @@
   "main": "index.js",
   "repository": "git@github.com:trustwallet/wizard-sdk.git",
   "author": "Abdou <118254027+a6-dou@users.noreply.github.com>",
-  "license": "MIT",
+  "license": "BSD",
   "scripts": {
     "test": "jest"
   },
