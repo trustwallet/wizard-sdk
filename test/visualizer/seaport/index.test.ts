@@ -1,5 +1,7 @@
 import { Domain } from "../../../src/types";
 import visualizer from "../../../src/visualizer";
+import seaport from "../../../src/visualizer/seaport";
+
 import {
   seaportBid,
   seaportBundleListing,
@@ -7,7 +9,11 @@ import {
   seaportCollectionOfferSpecificTrait,
   seaportDutchAuction,
   seaportEnglishAuction,
+  seaportReverseDutchAuction,
+  seaportReverseEnglishAuction,
   seaportSellMessagePayload,
+  sellAnyERC1155WithCriteria,
+  sellAnyERC721WithCriteria,
 } from "./data";
 
 describe("visualizer", () => {
@@ -29,6 +35,126 @@ describe("visualizer", () => {
       expect(result).toBeUndefined();
     });
 
+    it("should throw with wrong chain id if seaport module used directly", async () => {
+      expect(() => {
+        seaport.visualize(seaportSellMessagePayload, {
+          chainId: "3",
+          verifyingContract: seaPortDomainVersion2.verifyingContract,
+          name: seaPortDomainVersion2.name,
+          version: seaPortDomainVersion2.version,
+        });
+      }).toThrowError("wrong domain");
+    });
+
+    it("should successfully visualize two sided Dutch auction", async () => {
+      const result = await visualizer(seaportReverseDutchAuction, seaPortDomainVersion2);
+
+      expect(result).toEqual({
+        protocol: "OPENSEA_SEAPORT",
+        liveness: { from: 1680010140000, to: 1680269340000 },
+        assetIn: [
+          {
+            address: "0x0000000000000000000000000000000000000000",
+            type: "NATIVE",
+            amounts: ["760000000000000000", "950000000000000000"],
+          },
+        ],
+        assetOut: [
+          {
+            address: "0x2d33Bfe1c867346543Ac245396DFc6c3EBc8534F",
+            type: "ERC1155",
+            id: "1223",
+            amounts: ["50", "100"],
+          },
+        ],
+      });
+    });
+
+    it("should successfully visualize two sided English auction", async () => {
+      const result = await visualizer(
+        seaportReverseEnglishAuction,
+        seaPortDomainVersion2
+      );
+
+      expect(result).toEqual({
+        protocol: "OPENSEA_SEAPORT",
+        liveness: { from: 1680010140000, to: 1680269340000 },
+        assetIn: [
+          {
+            address: "0x0000000000000000000000000000000000000000",
+            type: "NATIVE",
+            amounts: ["760000000000000000", "950000000000000000"],
+          },
+        ],
+        assetOut: [
+          {
+            address: "0x2d33Bfe1c867346543Ac245396DFc6c3EBc8534F",
+            type: "ERC1155",
+            id: "1223",
+            amounts: ["50", "100"],
+          },
+        ],
+      });
+    });
+
+    /**
+     * @dev This is an edge case and as far as i know seaport still doest support this
+     * Indeed, as it's possible to create it, i added implementation for it
+     * @note should check at the smart contact level if this is possible
+     */
+    it("should successfully visualize ERC721 sell order with specific traits", async () => {
+      const result = await visualizer(sellAnyERC721WithCriteria, seaPortDomainVersion2);
+
+      expect(result).toEqual({
+        protocol: "OPENSEA_SEAPORT",
+        liveness: { from: 1680010140000, to: 1680269340000 },
+        assetIn: [
+          {
+            address: "0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D",
+            type: "ERC721",
+            amounts: ["1"],
+            id: "",
+          },
+        ],
+        assetOut: [
+          {
+            address: "0x2d33Bfe1c867346543Ac245396DFc6c3EBc8534F",
+            type: "ERC721",
+            amounts: ["1"],
+          },
+        ],
+      });
+    });
+
+    /**
+     * @dev This is an edge case and as far as i know seaport still doest support this
+     * Indeed, as it's possible to create it, i added implementation for it
+     * @note should check at the smart contact level if this is possible
+     */
+    it("should successfully visualize ERC1155 sell order with specific traits", async () => {
+      const result = await visualizer(sellAnyERC1155WithCriteria, seaPortDomainVersion2);
+
+      expect(result).toEqual({
+        protocol: "OPENSEA_SEAPORT",
+        liveness: { from: 1680010140000, to: 1680269340000 },
+        assetIn: [
+          {
+            address: "0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D",
+            type: "ERC1155",
+            amounts: ["50", "100"],
+            id: "",
+          },
+        ],
+        assetOut: [
+          {
+            address: "0x2d33Bfe1c867346543Ac245396DFc6c3EBc8534F",
+            type: "ERC1155",
+            amounts: ["50", "100"],
+          },
+        ],
+      });
+    });
+
     it("should successfully visualize sell order", async () => {
       const result = await visualizer(seaportSellMessagePayload, seaPortDomainVersion2);
 
@@ -40,7 +166,6 @@ describe("visualizer", () => {
             address: "0x60E4d786628Fea6478F785A6d7e704777c86a7c6",
             type: "ERC721",
             id: "16344",
-            amount: "1",
             amounts: ["1"],
           },
         ],
@@ -48,7 +173,6 @@ describe("visualizer", () => {
           {
             address: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
             type: "ERC20",
-            amount: "4000000000000000",
             amounts: ["4000000000000000"],
           },
         ],
@@ -72,7 +196,6 @@ describe("visualizer", () => {
             address: "0xED5AF388653567Af2F388E6224dC7C4b3241C544",
             type: "ERC721",
             id: "",
-            amount: "5",
             amounts: ["5"],
           },
         ],
@@ -80,7 +203,6 @@ describe("visualizer", () => {
           {
             address: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
             type: "ERC20",
-            amount: "100000000000000000",
             amounts: ["100000000000000000"],
           },
         ],
@@ -99,7 +221,6 @@ describe("visualizer", () => {
             address: "0xED5AF388653567Af2F388E6224dC7C4b3241C544",
             type: "ERC721",
             id: "",
-            amount: "3",
             amounts: ["3"],
           },
         ],
@@ -107,7 +228,6 @@ describe("visualizer", () => {
           {
             address: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
             type: "ERC20",
-            amount: "90000000000000000",
             amounts: ["90000000000000000"],
           },
         ],
@@ -127,7 +247,6 @@ describe("visualizer", () => {
           {
             address: "0x0000000000000000000000000000000000000000",
             type: "NATIVE",
-            amount: "4975000000000000000",
             amounts: ["4975000000000000000"],
           },
         ],
@@ -136,14 +255,12 @@ describe("visualizer", () => {
             address: "0x2d33Bfe1c867346543Ac245396DFc6c3EBc8534F",
             type: "ERC721",
             id: "1223",
-            amount: "1",
             amounts: ["1"],
           },
           {
             address: "0xED5AF388653567Af2F388E6224dC7C4b3241C544",
             type: "ERC721",
             id: "28055722494445081938143406270964393509249427241382713345351022514386455812231",
-            amount: "1",
             amounts: ["1"],
           },
         ],
@@ -164,7 +281,6 @@ describe("visualizer", () => {
             address: "0xED5AF388653567Af2F388E6224dC7C4b3241C544",
             type: "ERC721",
             id: "7649",
-            amount: "1",
             amounts: ["1"],
           },
         ],
@@ -172,7 +288,6 @@ describe("visualizer", () => {
           {
             address: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
             type: "ERC20",
-            amount: "100000000000000000",
             amounts: ["100000000000000000"],
           },
         ],
@@ -192,7 +307,6 @@ describe("visualizer", () => {
           {
             address: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
             type: "ERC20",
-            amount: "950000000000000000",
             amounts: ["950000000000000000"],
           },
         ],
@@ -201,7 +315,6 @@ describe("visualizer", () => {
             address: "0x2d33Bfe1c867346543Ac245396DFc6c3EBc8534F",
             type: "ERC721",
             id: "1223",
-            amount: "1",
             amounts: ["1"],
           },
         ],
@@ -221,7 +334,6 @@ describe("visualizer", () => {
           {
             address: "0x0000000000000000000000000000000000000000",
             type: "NATIVE",
-            amount: "760000000000000000",
             amounts: ["760000000000000000", "950000000000000000"],
           },
         ],
@@ -230,7 +342,6 @@ describe("visualizer", () => {
             address: "0x2d33Bfe1c867346543Ac245396DFc6c3EBc8534F",
             type: "ERC721",
             id: "1223",
-            amount: "1",
             amounts: ["1"],
           },
         ],

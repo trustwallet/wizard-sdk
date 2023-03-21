@@ -13,13 +13,13 @@ export const isSameAddress = (address1: string, address2: string): boolean => {
 
 export const abiCoder = new AbiCoder();
 
-export const decodeErrorMessage = (output: string): string => {
-  if (output.indexOf(REQUIRE_ERROR_SIGNATURE) === 0) {
-    const errorMessage = output.slice(REQUIRE_ERROR_SIGNATURE.length);
-    return abiCoder.decode(["string"], `0x${errorMessage}`)[0];
-  }
-  return output;
-};
+// export const decodeErrorMessage = (output: string): string => {
+//   if (output.indexOf(REQUIRE_ERROR_SIGNATURE) === 0) {
+//     const errorMessage = output.slice(REQUIRE_ERROR_SIGNATURE.length);
+//     return abiCoder.decode(["string"], `0x${errorMessage}`)[0];
+//   }
+//   return output;
+// };
 
 /// @dev assets ERCs event index hashes
 export const ERC721_ERC1155_APPROVE_ALL_TOPIC =
@@ -40,7 +40,7 @@ export const FALSE = "0x00000000000000000000000000000000000000000000000000000000
 /// @dev null address
 export const ZERO_ADDRESS = "0x0000000000000000000000000000000000000000";
 
-/// @dev use this to fast convert an address as 32bytes (in events or data slots) to 22bytes address
+/// @dev use this to fast convert an address as 32bytes (in events or data slots) to 20bytes address
 export const addressFrom32bytesTo20bytes = (address32bytes: string) => {
   return `0x${address32bytes.slice(26)}`;
 };
@@ -48,6 +48,6 @@ export const addressFrom32bytesTo20bytes = (address32bytes: string) => {
 /// @dev Wrapped ETH contract address
 export const WETH = "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2".toLocaleLowerCase();
 
-export const deepCopy = <T>(obj: T): T => {
-  return JSON.parse(JSON.stringify(obj));
-};
+// export const deepCopy = <T>(obj: T): T => {
+//   return JSON.parse(JSON.stringify(obj));
+// };

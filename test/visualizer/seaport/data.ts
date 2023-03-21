@@ -288,6 +288,165 @@ export const seaportDutchAuction: SeaPortPayload = {
   totalOriginalConsiderationItems: "2",
 };
 
+export const seaportReverseDutchAuction: SeaPortPayload = {
+  offerer: "0x900175B45Dcc84C23Cf597d5C3E766108CeA5bB0",
+  offer: [
+    {
+      itemType: 3,
+      token: "0x2d33Bfe1c867346543Ac245396DFc6c3EBc8534F",
+      identifierOrCriteria: "1223",
+      startAmount: "100",
+      endAmount: "50",
+    },
+  ],
+  consideration: [
+    {
+      itemType: 0,
+      token: "0x0000000000000000000000000000000000000000",
+      identifierOrCriteria: "0",
+      startAmount: "950000000000000000",
+      endAmount: "760000000000000000",
+      recipient: "0x900175B45Dcc84C23Cf597d5C3E766108CeA5bB0",
+    },
+    {
+      itemType: 0,
+      token: "0x0000000000000000000000000000000000000000",
+      identifierOrCriteria: "0",
+      startAmount: "50000000000000000",
+      endAmount: "40000000000000000",
+      recipient: "0x000000e1c867346543Ac245396DFc6c3EB000000",
+    },
+  ],
+  startTime: "1680010140",
+  endTime: "1680269340",
+  orderType: 2,
+  zone: "0x0000000000000000000000000000000000000000",
+  zoneHash: "0x0000000000000000000000000000000000000000000000000000000000000000",
+  salt: "24446860302761739304752683030156737591518664810215442929817290465896680966316",
+  conduitKey: "0x0000007b02230091a7ed01230072f7006a004d60a8d4e71d599b8104250f0000",
+  counter: "0",
+  totalOriginalConsiderationItems: "2",
+};
+
+export const seaportReverseEnglishAuction: SeaPortPayload = {
+  offerer: "0x900175B45Dcc84C23Cf597d5C3E766108CeA5bB0",
+  offer: [
+    {
+      itemType: 3,
+      token: "0x2d33Bfe1c867346543Ac245396DFc6c3EBc8534F",
+      identifierOrCriteria: "1223",
+      startAmount: "50",
+      endAmount: "100",
+    },
+  ],
+  consideration: [
+    {
+      itemType: 0,
+      token: "0x0000000000000000000000000000000000000000",
+      identifierOrCriteria: "0",
+      startAmount: "760000000000000000",
+      endAmount: "950000000000000000",
+      recipient: "0x900175B45Dcc84C23Cf597d5C3E766108CeA5bB0",
+    },
+    {
+      itemType: 0,
+      token: "0x0000000000000000000000000000000000000000",
+      identifierOrCriteria: "0",
+      startAmount: "50000000000000000",
+      endAmount: "40000000000000000",
+      recipient: "0x000000e1c867346543Ac245396DFc6c3EB000000",
+    },
+  ],
+  startTime: "1680010140",
+  endTime: "1680269340",
+  orderType: 2,
+  zone: "0x0000000000000000000000000000000000000000",
+  zoneHash: "0x0000000000000000000000000000000000000000000000000000000000000000",
+  salt: "24446860302761739304752683030156737591518664810215442929817290465896680966316",
+  conduitKey: "0x0000007b02230091a7ed01230072f7006a004d60a8d4e71d599b8104250f0000",
+  counter: "0",
+  totalOriginalConsiderationItems: "2",
+};
+
+export const sellAnyERC721WithCriteria: SeaPortPayload = {
+  offerer: "0x900175B45Dcc84C23Cf597d5C3E766108CeA5bB0",
+  offer: [
+    {
+      itemType: 4,
+      token: "0x2d33Bfe1c867346543Ac245396DFc6c3EBc8534F",
+      identifierOrCriteria: "2d33Bfe1c867346543Ac245396DFc6c3EBc8534F",
+      startAmount: "1",
+      endAmount: "1",
+    },
+  ],
+  consideration: [
+    {
+      itemType: 4,
+      token: "0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D",
+      identifierOrCriteria: "54",
+      startAmount: "1",
+      endAmount: "1",
+      recipient: "0x900175B45Dcc84C23Cf597d5C3E766108CeA5bB0",
+    },
+    {
+      itemType: 0,
+      token: "0x0000000000000000000000000000000000000000",
+      identifierOrCriteria: "0",
+      startAmount: "50000000000000000",
+      endAmount: "40000000000000000",
+      recipient: "0x000000e1c867346543Ac245396DFc6c3EB000000",
+    },
+  ],
+  startTime: "1680010140",
+  endTime: "1680269340",
+  orderType: 2,
+  zone: "0x0000000000000000000000000000000000000000",
+  zoneHash: "0x0000000000000000000000000000000000000000000000000000000000000000",
+  salt: "24446860302761739304752683030156737591518664810215442929817290465896680966316",
+  conduitKey: "0x0000007b02230091a7ed01230072f7006a004d60a8d4e71d599b8104250f0000",
+  counter: "0",
+  totalOriginalConsiderationItems: "2",
+};
+
+export const sellAnyERC1155WithCriteria: SeaPortPayload = {
+  offerer: "0x900175B45Dcc84C23Cf597d5C3E766108CeA5bB0",
+  offer: [
+    {
+      itemType: 5,
+      token: "0x2d33Bfe1c867346543Ac245396DFc6c3EBc8534F",
+      identifierOrCriteria: "2d33Bfe1c867346543Ac245396DFc6c3EBc8534F",
+      startAmount: "50",
+      endAmount: "100",
+    },
+  ],
+  consideration: [
+    {
+      itemType: 5,
+      token: "0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D",
+      identifierOrCriteria: "0",
+      startAmount: "50",
+      endAmount: "100",
+      recipient: "0x900175B45Dcc84C23Cf597d5C3E766108CeA5bB0",
+    },
+    {
+      itemType: 0,
+      token: "0x0000000000000000000000000000000000000000",
+      identifierOrCriteria: "0",
+      startAmount: "50000000000000000",
+      endAmount: "40000000000000000",
+      recipient: "0x000000e1c867346543Ac245396DFc6c3EB000000",
+    },
+  ],
+  startTime: "1680010140",
+  endTime: "1680269340",
+  orderType: 2,
+  zone: "0x0000000000000000000000000000000000000000",
+  zoneHash: "0x0000000000000000000000000000000000000000000000000000000000000000",
+  salt: "24446860302761739304752683030156737591518664810215442929817290465896680966316",
+  conduitKey: "0x0000007b02230091a7ed01230072f7006a004d60a8d4e71d599b8104250f0000",
+  counter: "0",
+  totalOriginalConsiderationItems: "2",
+};
 Object.freeze(seaportSellMessagePayload);
 Object.freeze(seaportCollectionOfferSpecificTrait);
 Object.freeze(seaportCollectionOfferAnyToken);

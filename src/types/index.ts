@@ -25,7 +25,6 @@ export type Asset = {
   address: string;
   type: ASSET_TYPE;
   id?: string;
-  amount?: string;
 };
 
 export type AssetInOut = {

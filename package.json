@@ -7,7 +7,8 @@
   "author": "Abdou <118254027+a6-dou@users.noreply.github.com>",
   "license": "BSD",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "coverage": "jest --coverage"
   },
   "devDependencies": {
     "@types/jest": "^29.5.0",
