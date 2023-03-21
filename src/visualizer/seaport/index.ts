@@ -153,10 +153,35 @@ const getSeaportAssetType = (seaportItemType: SeaPortItemType): ASSET_TYPE => {
   }
 };
 
-const supportedChains = [1, 2, 4, 5];
+const supportedChains = [
+  1, //Ethereum
+  5, //Goerli
+  56, //BSC
+  97, //BSC Testnet
+  11155111, //Sepolia
+  137, //Polygon
+  80001, //Mumbai
+  10, //Optimism
+  69, //Optimism Goerli
+  42161, //Arbitrum One
+  421613, //Arbitrum Goerli
+  42170, //Arbitrum Nova
+  43114, //Avalanche C-Chain
+  43113, //Avalanche Fuji Testnet
+  100, //Gnosis
+  8217, //Klaytn
+  1001, //Baobab
+];
+
+/**
+ * @dev both v1.2 and v1.3 are not mentioned in the seaport deployment github repo nor in the seaport-js SDK
+ * and there's a note regarding some limitation so we decided to not support them
+ * @see https://github.com/ProjectOpenSea/seaport#deployments-by-evm-chain
+ * @see https://github.com/ProjectOpenSea/seaport-js/blob/main/src/constants.ts#L5
+ */
 const addressesBook = [
-  "0x00000000000001ad428e4906aE43D8F9852d0dD6",
-  "0x00000000006c3852cbEf3e08E8dF289169EdE581",
+  "0x00000000000001ad428e4906aE43D8F9852d0dD6", //v1.4
+  "0x00000000006c3852cbEf3e08E8dF289169EdE581", //v1.1
 ].map((e) => e.toLocaleLowerCase());
 
 const seaport: Protocol<SeaPortPayload> = {
