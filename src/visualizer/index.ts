@@ -22,7 +22,6 @@ export default async function visualize(
   switch (protocolId) {
     case PROTOCOL_ID.OPENSEA_SEAPORT:
       return seaport.visualize(message as SeaPortPayload, domain);
-      break;
 
     default:
       return;

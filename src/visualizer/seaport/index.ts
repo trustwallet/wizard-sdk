@@ -42,7 +42,6 @@ export const visualize = (message: SeaPortPayload, domain: Domain): Result => {
           address: offer.token,
           type: assetType,
           id: offer.identifierOrCriteria,
-          amount: amounts[0],
           amounts,
         });
         break;
@@ -51,7 +50,6 @@ export const visualize = (message: SeaPortPayload, domain: Domain): Result => {
         assetOut.push({
           address: offer.token,
           type: assetType,
-          amount: amounts[0],
           amounts,
         });
         break;
@@ -61,7 +59,6 @@ export const visualize = (message: SeaPortPayload, domain: Domain): Result => {
         assetOut.push({
           address: offer.token,
           type: assetType,
-          amount: amounts[0],
           amounts,
         });
         break;
@@ -96,7 +93,6 @@ export const visualize = (message: SeaPortPayload, domain: Domain): Result => {
           address: item.token,
           type: assetType,
           id: item.identifierOrCriteria,
-          amount: amounts[0],
           amounts,
         });
         break;
@@ -106,7 +102,6 @@ export const visualize = (message: SeaPortPayload, domain: Domain): Result => {
         assetIn.push({
           address: item.token,
           type: assetType,
-          amount: amounts[0],
           amounts,
         });
         break;
@@ -117,7 +112,6 @@ export const visualize = (message: SeaPortPayload, domain: Domain): Result => {
           address: item.token,
           type: assetType,
           id: "",
-          amount: amounts[0],
           amounts,
         });
         break;
