@@ -13,10 +13,13 @@ export const getProtocolId = (domain: Domain): PROTOCOL_ID | undefined => {
   return;
 };
 
-export default async function visualize(
-  message: VisualizationMessage,
-  domain: Domain
-): Promise<Result | undefined> {
+/**
+ * @param {T} message EIP-712 message
+ * @param {Domain} domain EIP-712 domain
+ * @returns {Result} assets impact and message liveness
+ * @throws {Error}
+ */
+export default async function visualize<T>(message: T, domain: Domain): Promise<Result> {
   const protocolId = getProtocolId(domain);
 
   switch (protocolId) {
