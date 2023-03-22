@@ -1,5 +1,7 @@
-import { Domain, Result, VisualizationMessage } from "../types";
+import { Domain, Result } from "../types";
+import { LooksrareMakerOrderWithEncodedParams } from "../types/looksrare";
 import { SeaPortPayload } from "../types/seaport";
+import looksrare from "./looksrare";
 import seaport from "./seaport";
 
 export enum PROTOCOL_ID {
@@ -10,6 +12,7 @@ export enum PROTOCOL_ID {
 
 export const getProtocolId = (domain: Domain): PROTOCOL_ID | undefined => {
   if (seaport.isCorrectDomain(domain)) return PROTOCOL_ID.OPENSEA_SEAPORT;
+  if (looksrare.isCorrectDomain(domain)) return PROTOCOL_ID.LOOKSRARE_EXCHANGE;
   return;
 };
 
@@ -26,7 +29,10 @@ export default async function visualize<T>(message: T, domain: Domain): Promise<
     case PROTOCOL_ID.OPENSEA_SEAPORT:
       return seaport.visualize(message as SeaPortPayload, domain);
 
+    case PROTOCOL_ID.LOOKSRARE_EXCHANGE:
+      return looksrare.visualize(message as LooksrareMakerOrderWithEncodedParams, domain);
+
     default:
-      return;
+      throw new Error("Unrecognized/Unsupported Protocol Domain");
   }
 }
