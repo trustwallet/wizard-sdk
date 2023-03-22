@@ -4,7 +4,7 @@ import { BigNumberish, BytesLike } from "ethers";
  * @see https://github.com/LooksRare/looksrare-sdk/blob/master/src/types/orders.ts
  */
 export type LooksrareMakerOrder = {
-  isOrderAsk: boolean; // Whether the order is an ask (sending a passive order to sell a NFT) or a bid (sending a passive order to buy an NFT).[true --> ask / false --> bid]
+  isOrderAsk: boolean | string; // Whether the order is an ask (sending a passive order to sell a NFT) or a bid (sending a passive order to buy an NFT).[true --> ask / false --> bid]
   signer: string; // signer address of the maker order
   collection: string; // collection address
   price: string;
@@ -16,7 +16,7 @@ export type LooksrareMakerOrder = {
   startTime: string; // startTime in timestamp
   endTime: string; // endTime in timestamp
   minPercentageToAsk: string;
-  params: any[]; // params (e.g., price, target account for private sale)
+  params: any[] | BytesLike; // params (e.g., price, target account for private sale)
 };
 
 export type LooksrareMakerOrderWithEncodedParams = {
