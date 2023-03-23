@@ -11,7 +11,7 @@ export const isCorrectDomain = (domain: Domain) => {
 };
 
 export const visualize = (message: SeaPortPayload, domain: Domain): Result => {
-  if (!isCorrectDomain(domain)) throw new Error("wrong domain");
+  if (!isCorrectDomain(domain)) throw new Error("wrong seaport domain");
 
   const assetOut: AssetInOut[] = [];
   const assetIn: AssetInOut[] = [];

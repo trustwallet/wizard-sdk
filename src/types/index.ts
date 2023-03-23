@@ -1,7 +1,4 @@
 import { PROTOCOL_ID } from "../visualizer";
-import { BlurIoOrder } from "./blur";
-import { LooksrareMakerOrder } from "./looksrare";
-import { SeaPortPayload } from "./seaport";
 
 export * as blurTypes from "./blur";
 export * as looksrareTypes from "./looksrare";
@@ -52,8 +49,12 @@ export type Result = {
 };
 
 export type Protocol<T> = {
+  /**
+   * @param {T} message EIP-712 message
+   * @param {Domain} domain EIP-712 domain
+   * @returns {Result} assets impact and message liveness
+   * @throws {Error}
+   */
   visualize: (message: T, domain: Domain) => Result;
   isCorrectDomain: (domain: Domain) => boolean;
 };
-
-export type VisualizationMessage = SeaPortPayload | LooksrareMakerOrder | BlurIoOrder;

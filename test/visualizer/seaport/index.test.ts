@@ -26,13 +26,14 @@ describe("visualizer", () => {
     };
 
     it("should return undefined with wrong chain id", async () => {
-      const result = await visualizer(seaportSellMessagePayload, {
-        chainId: "3",
-        verifyingContract: seaPortDomainVersion2.verifyingContract,
-        name: seaPortDomainVersion2.name,
-        version: seaPortDomainVersion2.version,
-      });
-      expect(result).toBeUndefined();
+      await expect(
+        visualizer(seaportSellMessagePayload, {
+          chainId: "3",
+          verifyingContract: seaPortDomainVersion2.verifyingContract,
+          name: seaPortDomainVersion2.name,
+          version: seaPortDomainVersion2.version,
+        })
+      ).rejects.toThrowError("Unrecognized/Unsupported Protocol Domain");
     });
 
     it("should throw with wrong chain id if seaport module used directly", async () => {
@@ -43,7 +44,7 @@ describe("visualizer", () => {
           name: seaPortDomainVersion2.name,
           version: seaPortDomainVersion2.version,
         });
-      }).toThrowError("wrong domain");
+      }).toThrow("wrong seaport domain");
     });
 
     it("should successfully visualize two sided Dutch auction", async () => {

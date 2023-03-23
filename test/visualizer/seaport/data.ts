@@ -4,7 +4,7 @@ import {
   SeaPortPayload,
 } from "../../../src/types/seaport";
 
-export const seaportSellMessagePayload: SeaPortPayload = {
+const seaportSellMessagePayload: SeaPortPayload = {
   offerer: "0x377e19e0D6525f5fABd565bc47dc4e5FC8Bafb01",
   offer: [
     {
@@ -44,7 +44,7 @@ export const seaportSellMessagePayload: SeaPortPayload = {
   counter: "0",
 };
 
-export const seaportCollectionOfferSpecificTrait: SeaPortPayload = {
+const seaportCollectionOfferSpecificTrait: SeaPortPayload = {
   offerer: "0x900175B45Dcc84C23Cf597d5C3E766108CeA5bB0",
   offer: [
     {
@@ -85,7 +85,7 @@ export const seaportCollectionOfferSpecificTrait: SeaPortPayload = {
   totalOriginalConsiderationItems: "2",
 };
 
-export const seaportCollectionOfferAnyToken: SeaPortPayload = {
+const seaportCollectionOfferAnyToken: SeaPortPayload = {
   offerer: "0x900175B45Dcc84C23Cf597d5C3E766108CeA5bB0",
   offer: [
     {
@@ -127,7 +127,7 @@ export const seaportCollectionOfferAnyToken: SeaPortPayload = {
   totalOriginalConsiderationItems: "2",
 };
 
-export const seaportBundleListing: SeaPortPayload = {
+const seaportBundleListing: SeaPortPayload = {
   offerer: "0x900175B45Dcc84C23Cf597d5C3E766108CeA5bB0",
   offer: [
     {
@@ -175,7 +175,7 @@ export const seaportBundleListing: SeaPortPayload = {
   totalOriginalConsiderationItems: "2",
 };
 
-export const seaportBid: SeaPortPayload = {
+const seaportBid: SeaPortPayload = {
   offerer: "0x900175B45Dcc84C23Cf597d5C3E766108CeA5bB0",
   offer: [
     {
@@ -215,7 +215,7 @@ export const seaportBid: SeaPortPayload = {
   totalOriginalConsiderationItems: "2",
 };
 
-export const seaportEnglishAuction: SeaPortPayload = {
+const seaportEnglishAuction: SeaPortPayload = {
   offerer: "0x900175B45Dcc84C23Cf597d5C3E766108CeA5bB0",
   offer: [
     {
@@ -248,7 +248,7 @@ export const seaportEnglishAuction: SeaPortPayload = {
   totalOriginalConsiderationItems: "1",
 };
 
-export const seaportDutchAuction: SeaPortPayload = {
+const seaportDutchAuction: SeaPortPayload = {
   offerer: "0x900175B45Dcc84C23Cf597d5C3E766108CeA5bB0",
   offer: [
     {
@@ -288,7 +288,7 @@ export const seaportDutchAuction: SeaPortPayload = {
   totalOriginalConsiderationItems: "2",
 };
 
-export const seaportReverseDutchAuction: SeaPortPayload = {
+const seaportReverseDutchAuction: SeaPortPayload = {
   offerer: "0x900175B45Dcc84C23Cf597d5C3E766108CeA5bB0",
   offer: [
     {
@@ -328,7 +328,7 @@ export const seaportReverseDutchAuction: SeaPortPayload = {
   totalOriginalConsiderationItems: "2",
 };
 
-export const seaportReverseEnglishAuction: SeaPortPayload = {
+const seaportReverseEnglishAuction: SeaPortPayload = {
   offerer: "0x900175B45Dcc84C23Cf597d5C3E766108CeA5bB0",
   offer: [
     {
@@ -368,7 +368,7 @@ export const seaportReverseEnglishAuction: SeaPortPayload = {
   totalOriginalConsiderationItems: "2",
 };
 
-export const sellAnyERC721WithCriteria: SeaPortPayload = {
+const sellAnyERC721WithCriteria: SeaPortPayload = {
   offerer: "0x900175B45Dcc84C23Cf597d5C3E766108CeA5bB0",
   offer: [
     {
@@ -454,3 +454,16 @@ Object.freeze(seaportBundleListing);
 Object.freeze(seaportBid);
 Object.freeze(seaportEnglishAuction);
 Object.freeze(seaportDutchAuction);
+
+export {
+  seaportSellMessagePayload,
+  seaportCollectionOfferSpecificTrait,
+  seaportCollectionOfferAnyToken,
+  seaportBundleListing,
+  seaportBid,
+  seaportEnglishAuction,
+  seaportDutchAuction,
+  seaportReverseDutchAuction,
+  seaportReverseEnglishAuction,
+  sellAnyERC721WithCriteria,
+};

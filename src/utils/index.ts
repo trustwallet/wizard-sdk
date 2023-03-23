@@ -1,4 +1,6 @@
 import { AbiCoder } from "ethers";
+import { BLUR_IO_POOL_ADDRESS } from "../visualizer/blur-io/const";
+import { ASSET_TYPE } from "../types";
 
 const REQUIRE_ERROR_SIGNATURE = "0x08c379a0";
 /// @dev lower case both addresses before checking
@@ -51,3 +53,12 @@ export const WETH = "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2".toLocaleLowerCa
 // export const deepCopy = <T>(obj: T): T => {
 //   return JSON.parse(JSON.stringify(obj));
 // };
+
+export const getPaymentAssetType = (tokenAddress: string): ASSET_TYPE => {
+  const isNative = [
+    ZERO_ADDRESS.toLocaleLowerCase(),
+    BLUR_IO_POOL_ADDRESS.toLocaleLowerCase(),
+  ].includes(tokenAddress.toLowerCase());
+
+  return isNative ? ASSET_TYPE.NATIVE : ASSET_TYPE.ERC20;
+};
