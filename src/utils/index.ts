@@ -13,6 +13,10 @@ export const isSameAddress = (address1: string, address2: string): boolean => {
   );
 };
 
+export const MaxUint256 = BigInt(
+  "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+);
+
 export const abiCoder = new AbiCoder();
 
 // export const decodeErrorMessage = (output: string): string => {
