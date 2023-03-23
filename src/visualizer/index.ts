@@ -1,6 +1,8 @@
 import { Domain, Result } from "../types";
+import { BlurIoOrder } from "../types/blur";
 import { LooksrareMakerOrderWithEncodedParams } from "../types/looksrare";
 import { SeaPortPayload } from "../types/seaport";
+import blurIo from "./blur-io";
 import looksrare from "./looksrare";
 import seaport from "./seaport";
 
@@ -13,6 +15,8 @@ export enum PROTOCOL_ID {
 export const getProtocolId = (domain: Domain): PROTOCOL_ID | undefined => {
   if (seaport.isCorrectDomain(domain)) return PROTOCOL_ID.OPENSEA_SEAPORT;
   if (looksrare.isCorrectDomain(domain)) return PROTOCOL_ID.LOOKSRARE_EXCHANGE;
+  if (blurIo.isCorrectDomain(domain)) return PROTOCOL_ID.BLUR_IO_MARKETPLACE;
+
   return;
 };
 
@@ -31,6 +35,9 @@ export default async function visualize<T>(message: T, domain: Domain): Promise<
 
     case PROTOCOL_ID.LOOKSRARE_EXCHANGE:
       return looksrare.visualize(message as LooksrareMakerOrderWithEncodedParams, domain);
+
+    case PROTOCOL_ID.BLUR_IO_MARKETPLACE:
+      return blurIo.visualize(message as BlurIoOrder, domain);
 
     default:
       throw new Error("Unrecognized/Unsupported Protocol Domain");
