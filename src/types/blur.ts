@@ -10,7 +10,7 @@ export type BlurIoFee = {
 
 export type BlurIoOrder = {
   trader: string;
-  side: BlurIoSide;
+  side: BlurIoSide | string | number;
   matchingPolicy: string;
   collection: string;
   tokenId: string;
