@@ -58,3 +58,14 @@ export type Protocol<T> = {
   visualize: (message: T, domain: Domain) => Result;
   isCorrectDomain: (domain: Domain) => boolean;
 };
+
+export type PermitMessage = {
+  owner?: string;
+  holder?: string;
+  spender: string;
+  nonce: string;
+  value?: string;
+  deadline?: string;
+  expiry?: string;
+  allowed?: boolean | string;
+};
