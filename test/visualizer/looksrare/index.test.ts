@@ -60,6 +60,7 @@ describe("looksrare", () => {
           amounts: ["1"],
         },
       ],
+      approval: [],
       liveness: { from: 1677588653000, to: 1680266940000 },
     });
   });
@@ -86,6 +87,7 @@ describe("looksrare", () => {
           amounts: ["1000000000000000"],
         },
       ],
+      approval: [],
       liveness: { from: 1677588943000, to: 1677675336000 },
     });
   });
@@ -113,6 +115,7 @@ describe("looksrare", () => {
           amounts: ["1000000000000000"],
         },
       ],
+      approval: [],
       liveness: { from: 1677588943000, to: 1677675336000 },
     });
   });
@@ -144,6 +147,7 @@ describe("looksrare", () => {
           amounts: ["1"],
         },
       ],
+      approval: [],
       liveness: { from: 1677588653000, to: 1680266940000 },
     });
   });

@@ -42,6 +42,7 @@ describe("blur.io", () => {
           amounts: ["1"],
         },
       ],
+      approval: [],
       liveness: { from: 1677736151000, to: 1678340951000 },
     });
   });
@@ -66,6 +67,7 @@ describe("blur.io", () => {
           amounts: ["800000000000000000"],
         },
       ],
+      approval: [],
       liveness: { from: 1677736151000, to: 1678340951000 },
     });
   });
@@ -89,6 +91,7 @@ describe("blur.io", () => {
           amounts: ["10000000000000000"],
         },
       ],
+      approval: [],
       liveness: { from: 1678461048000, to: 1709997048000 },
     });
   });
@@ -116,6 +119,7 @@ describe("blur.io", () => {
           amounts: ["800000000000000000"],
         },
       ],
+      approval: [],
       liveness: { from: 1677736151000, to: 1678340951000 },
     });
   });

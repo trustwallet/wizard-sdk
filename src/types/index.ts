@@ -45,7 +45,7 @@ export type Result = {
   liveness?: Liveness;
   assetIn: AssetInOut[];
   assetOut: AssetInOut[];
-  approval?: Approval[];
+  approval: Approval[];
 };
 
 export type Protocol<T> = {

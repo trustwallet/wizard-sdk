@@ -1,4 +1,3 @@
-
 import { Domain, PermitMessage, Result } from "../types";
 
 import { SeaPortPayload } from "../types/seaport";

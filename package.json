@@ -1,14 +1,20 @@
 {
-  "name": "wizard-sdk",
+  "name": "@trustwallet/wizard-sdk",
   "version": "0.0.1",
   "description": "typescript sdk to visualize EIP-712 various protocols, simulate and decode transactions",
-  "main": "index.js",
+  "main": "lib/index.js",
   "repository": "git@github.com:trustwallet/wizard-sdk.git",
   "author": "Abdou <118254027+a6-dou@users.noreply.github.com>",
   "license": "BSD",
+  "keywords": [
+    "web3",
+    "EIP-712",
+    "Simulation"
+  ],
   "scripts": {
     "test": "jest",
-    "coverage": "jest --coverage"
+    "coverage": "jest --coverage",
+    "build": "tsc --project ./tsconfig.build.json"
   },
   "devDependencies": {
     "@types/jest": "^29.5.0",
@@ -23,5 +29,12 @@
     "@typescript-eslint/parser": "^5.55.0",
     "eslint": "^8.36.0",
     "ethers": "^6.1.0"
-  }
+  },
+  "files": [
+    "lib/",
+    "LICENSE",
+    "README.md",
+    "node_module",
+    "package.json"
+  ]
 }
