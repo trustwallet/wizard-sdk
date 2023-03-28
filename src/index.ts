@@ -1,1 +1,3 @@
-export * as visualizer from "./visualizer";
+import visualizer from "./visualizer";
+
+export { visualizer };
