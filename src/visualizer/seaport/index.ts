@@ -126,6 +126,7 @@ export const visualize = (message: SeaPortPayload, domain: Domain): Result => {
     },
     assetIn,
     assetOut,
+    approval: [],
   };
 };
 

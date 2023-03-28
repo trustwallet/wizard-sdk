@@ -78,6 +78,7 @@ export const visualize = (message: BlurIoOrder, domain: Domain): Result => {
       from: Number(message.listingTime) * 1000,
       to: Number(message.expirationTime) * 1000,
     },
+    approval: [],
   };
 };
 
