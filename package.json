@@ -2,7 +2,7 @@
   "name": "@trustwallet/wizard-sdk",
   "version": "0.0.1",
   "description": "typescript sdk to visualize EIP-712 various protocols, simulate and decode transactions",
-  "main": "index.js",
+  "main": "lib/index.js",
   "repository": "git@github.com:trustwallet/wizard-sdk.git",
   "author": "Abdou <118254027+a6-dou@users.noreply.github.com>",
   "license": "BSD",
@@ -31,7 +31,7 @@
     "ethers": "^6.1.0"
   },
   "files": [
-    "lib/src",
+    "lib/",
     "LICENSE",
     "README.md",
     "node_module",
