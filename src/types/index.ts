@@ -48,7 +48,7 @@ export type VisualizationResult = {
   approval: Approval[];
 };
 
-export type Protocol<T> = {
+export type EIP712Protocol<T> = {
   /**
    * @param {T} message EIP-712 message
    * @param {Domain} domain EIP-712 domain

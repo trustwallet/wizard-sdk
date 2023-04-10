@@ -33,7 +33,7 @@ describe("visualizer", () => {
           name: seaPortDomainVersion2.name,
           version: seaPortDomainVersion2.version,
         })
-      ).rejects.toThrowError("Unrecognized/Unsupported Protocol Domain");
+      ).rejects.toThrowError("Unrecognized/Unsupported EIP712Protocol Domain");
     });
 
     it("should throw with wrong chain id if seaport module used directly", async () => {

@@ -1,5 +1,5 @@
 import { PROTOCOL_ID } from "..";
-import { ASSET_TYPE, AssetInOut, Domain, Protocol, VisualizationResult } from "../../types";
+import { ASSET_TYPE, AssetInOut, Domain, EIP712Protocol, VisualizationResult } from "../../types";
 import { SeaPortItemType, SeaPortPayload } from "../../types/seaport";
 import { isSameAddress } from "../../utils";
 
@@ -179,7 +179,7 @@ const addressesBook = [
   "0x00000000006c3852cbEf3e08E8dF289169EdE581", //v1.1
 ].map((e) => e.toLocaleLowerCase());
 
-const seaport: Protocol<SeaPortPayload> = {
+const seaport: EIP712Protocol<SeaPortPayload> = {
   isCorrectDomain,
   visualize,
 };

@@ -51,6 +51,6 @@ export default async function visualize<T extends object>(
         return erc20Permit.visualize(message as PermitMessage, domain);
       }
 
-      throw new Error("Unrecognized/Unsupported Protocol Domain");
+      throw new Error("Unrecognized/Unsupported EIP712Protocol Domain");
   }
 }

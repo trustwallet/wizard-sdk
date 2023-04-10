@@ -1,5 +1,5 @@
 import { PROTOCOL_ID } from "..";
-import { ASSET_TYPE, AssetInOut, Domain, Protocol, VisualizationResult } from "../../types";
+import { ASSET_TYPE, AssetInOut, Domain, EIP712Protocol, VisualizationResult } from "../../types";
 import { BlurIoOrder, BlurIoSide } from "../../types/blur";
 import { ZERO_ADDRESS, getPaymentAssetType, isSameAddress } from "../../utils";
 import {
@@ -87,7 +87,7 @@ const addressesBook = [
   "0x000000000000ad05ccc4f10045630fb830b95127", // Mainnet
 ].map((e) => e.toLocaleLowerCase());
 
-const blurIo: Protocol<BlurIoOrder> = {
+const blurIo: EIP712Protocol<BlurIoOrder> = {
   isCorrectDomain,
   visualize,
 };

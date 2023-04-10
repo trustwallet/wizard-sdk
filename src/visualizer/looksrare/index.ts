@@ -3,7 +3,7 @@
  */
 
 import { PROTOCOL_ID } from "..";
-import { ASSET_TYPE, AssetInOut, Domain, Protocol, VisualizationResult } from "../../types";
+import { ASSET_TYPE, AssetInOut, Domain, EIP712Protocol, VisualizationResult } from "../../types";
 import { LooksrareMakerOrderWithEncodedParams, STRATEGY } from "../../types/looksrare";
 import { abiCoder, getPaymentAssetType } from "../../utils";
 import { strategiesLookup } from "./const";
@@ -100,7 +100,7 @@ const getExecutionStrategy = (strategyAddress: string): STRATEGY => {
   return strategiesLookup[strategyAddress.toLocaleLowerCase()] || STRATEGY.UNKNOWN;
 };
 
-const looksrare: Protocol<LooksrareMakerOrderWithEncodedParams> = {
+const looksrare: EIP712Protocol<LooksrareMakerOrderWithEncodedParams> = {
   isCorrectDomain,
   visualize,
 };

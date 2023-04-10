@@ -16,7 +16,7 @@ describe("looksrare", () => {
   it("should revert if domain is not recognized by SDk entry", async () => {
     await expect(
       visualize(looksrareNormalListing, { ...looksrareDomain, chainId: "11" })
-    ).rejects.toThrowError("Unrecognized/Unsupported Protocol Domain");
+    ).rejects.toThrowError("Unrecognized/Unsupported EIP712Protocol Domain");
   });
 
   it("should revert at looksrare module level if accessed directly with wrong domain", () => {
