@@ -1,4 +1,4 @@
-import { Domain, PermitMessage, VisualizationResult } from "../types";
+import { PermitMessage } from "../types";
 
 import { SeaPortPayload } from "../types/seaport";
 import { BlurIoOrder } from "../types/blur";
@@ -8,6 +8,7 @@ import blurIo from "./blur-io";
 import erc20Permit from "./erc20-permit";
 import looksrare from "./looksrare";
 import seaport from "./seaport";
+import { Domain, VisualizationResult } from "../types/visualizer";
 
 export enum PROTOCOL_ID {
   OPENSEA_SEAPORT = "OPENSEA_SEAPORT",

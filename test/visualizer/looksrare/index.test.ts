@@ -1,5 +1,5 @@
-import { Domain } from "../../../src/types";
 import { LooksrareMakerOrderWithEncodedParams } from "../../../src/types/looksrare";
+import { Domain } from "../../../src/types/visualizer";
 import { abiCoder } from "../../../src/utils";
 import visualize from "../../../src/visualizer";
 import looksrare from "../../../src/visualizer/looksrare";
@@ -45,14 +45,14 @@ describe("looksrare", () => {
 
     expect(result).toEqual({
       protocol: "LOOKSRARE_EXCHANGE",
-      assetIn: [
+      assetsIn: [
         {
           address: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
           type: "ERC20",
           amounts: ["196000000000000000"],
         },
       ],
-      assetOut: [
+      assetsOut: [
         {
           address: "0x90c70Dc9f3FDa4a1D78a2B7D90CA087088355717",
           type: "ERC721",
@@ -73,14 +73,14 @@ describe("looksrare", () => {
 
     expect(result).toEqual({
       protocol: "LOOKSRARE_EXCHANGE",
-      assetIn: [
+      assetsIn: [
         {
           address: "0x90c70Dc9f3FDa4a1D78a2B7D90CA087088355717",
           type: "ERC1155",
           amounts: ["10"],
         },
       ],
-      assetOut: [
+      assetsOut: [
         {
           address: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
           type: "ERC20",
@@ -100,7 +100,7 @@ describe("looksrare", () => {
 
     expect(result).toEqual({
       protocol: "LOOKSRARE_EXCHANGE",
-      assetIn: [
+      assetsIn: [
         {
           address: "0x90c70Dc9f3FDa4a1D78a2B7D90CA087088355717",
           type: "ERC721",
@@ -108,7 +108,7 @@ describe("looksrare", () => {
           amounts: ["1"],
         },
       ],
-      assetOut: [
+      assetsOut: [
         {
           address: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
           type: "ERC20",
@@ -132,14 +132,14 @@ describe("looksrare", () => {
 
     expect(result).toEqual({
       protocol: "LOOKSRARE_EXCHANGE",
-      assetIn: [
+      assetsIn: [
         {
           address: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
           type: "ERC20",
           amounts: ["196000000000000000", "205800000000000000"],
         },
       ],
-      assetOut: [
+      assetsOut: [
         {
           address: "0x90c70Dc9f3FDa4a1D78a2B7D90CA087088355717",
           type: "ERC721",

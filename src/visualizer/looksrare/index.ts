@@ -3,8 +3,9 @@
  */
 
 import { PROTOCOL_ID } from "..";
-import { ASSET_TYPE, AssetInOut, Domain, EIP712Protocol, VisualizationResult } from "../../types";
+import { ASSET_TYPE, AssetInOut } from "../../types";
 import { LooksrareMakerOrderWithEncodedParams, STRATEGY } from "../../types/looksrare";
+import { Domain, EIP712Protocol, VisualizationResult } from "../../types/visualizer";
 import { abiCoder, getPaymentAssetType } from "../../utils";
 import { strategiesLookup } from "./const";
 
@@ -70,8 +71,8 @@ export const visualize = (
   return {
     protocol: PROTOCOL_ID.LOOKSRARE_EXCHANGE,
     // If order is an ask, user is selling an NFT for an asset in return
-    assetIn: [isOrderAsk ? paymentAsset : nftAsset],
-    assetOut: [isOrderAsk ? nftAsset : paymentAsset],
+    assetsIn: [isOrderAsk ? paymentAsset : nftAsset],
+    assetsOut: [isOrderAsk ? nftAsset : paymentAsset],
     liveness: {
       from: Number(message.startTime) * 1000,
       to: Number(message.endTime) * 1000,

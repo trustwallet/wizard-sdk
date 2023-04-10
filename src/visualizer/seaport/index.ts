@@ -1,6 +1,7 @@
 import { PROTOCOL_ID } from "..";
-import { ASSET_TYPE, AssetInOut, Domain, EIP712Protocol, VisualizationResult } from "../../types";
+import { ASSET_TYPE, AssetInOut } from "../../types";
 import { SeaPortItemType, SeaPortPayload } from "../../types/seaport";
+import { Domain, EIP712Protocol, VisualizationResult } from "../../types/visualizer";
 import { isSameAddress } from "../../utils";
 
 export const isCorrectDomain = (domain: Domain) => {
@@ -10,11 +11,14 @@ export const isCorrectDomain = (domain: Domain) => {
   );
 };
 
-export const visualize = (message: SeaPortPayload, domain: Domain): VisualizationResult => {
+export const visualize = (
+  message: SeaPortPayload,
+  domain: Domain
+): VisualizationResult => {
   if (!isCorrectDomain(domain)) throw new Error("wrong seaport domain");
 
-  const assetOut: AssetInOut[] = [];
-  const assetIn: AssetInOut[] = [];
+  const assetsOut: AssetInOut[] = [];
+  const assetsIn: AssetInOut[] = [];
 
   // Offers logic
   message.offer.forEach((offer) => {
@@ -38,7 +42,7 @@ export const visualize = (message: SeaPortPayload, domain: Domain): Visualizatio
     switch (offerType) {
       case SeaPortItemType.ERC1155:
       case SeaPortItemType.ERC721:
-        assetOut.push({
+        assetsOut.push({
           address: offer.token,
           type: assetType,
           id: offer.identifierOrCriteria,
@@ -47,7 +51,7 @@ export const visualize = (message: SeaPortPayload, domain: Domain): Visualizatio
         break;
 
       case SeaPortItemType.ERC20:
-        assetOut.push({
+        assetsOut.push({
           address: offer.token,
           type: assetType,
           amounts,
@@ -56,7 +60,7 @@ export const visualize = (message: SeaPortPayload, domain: Domain): Visualizatio
 
       case SeaPortItemType.ERC1155_WITH_CRITERIA:
       case SeaPortItemType.ERC721_WITH_CRITERIA:
-        assetOut.push({
+        assetsOut.push({
           address: offer.token,
           type: assetType,
           amounts,
@@ -89,7 +93,7 @@ export const visualize = (message: SeaPortPayload, domain: Domain): Visualizatio
     switch (considerationType) {
       case SeaPortItemType.ERC1155:
       case SeaPortItemType.ERC721:
-        assetIn.push({
+        assetsIn.push({
           address: item.token,
           type: assetType,
           id: item.identifierOrCriteria,
@@ -99,7 +103,7 @@ export const visualize = (message: SeaPortPayload, domain: Domain): Visualizatio
 
       case SeaPortItemType.ERC20:
       case SeaPortItemType.NATIVE:
-        assetIn.push({
+        assetsIn.push({
           address: item.token,
           type: assetType,
           amounts,
@@ -108,7 +112,7 @@ export const visualize = (message: SeaPortPayload, domain: Domain): Visualizatio
 
       case SeaPortItemType.ERC1155_WITH_CRITERIA:
       case SeaPortItemType.ERC721_WITH_CRITERIA:
-        assetIn.push({
+        assetsIn.push({
           address: item.token,
           type: assetType,
           id: "",
@@ -124,8 +128,8 @@ export const visualize = (message: SeaPortPayload, domain: Domain): Visualizatio
       from: Number(message.startTime) * 1000,
       to: Number(message.endTime) * 1000,
     },
-    assetIn,
-    assetOut,
+    assetsIn,
+    assetsOut,
     approval: [],
   };
 };
