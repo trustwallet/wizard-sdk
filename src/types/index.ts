@@ -40,7 +40,7 @@ type Approval = {
   deadline?: number;
 } & Asset;
 
-export type Result = {
+export type VisualizationResult = {
   protocol: PROTOCOL_ID;
   liveness?: Liveness;
   assetIn: AssetInOut[];
@@ -52,10 +52,10 @@ export type Protocol<T> = {
   /**
    * @param {T} message EIP-712 message
    * @param {Domain} domain EIP-712 domain
-   * @returns {Result} assets impact and message liveness
+   * @returns {VisualizationResult} assets impact and message liveness
    * @throws {Error}
    */
-  visualize: (message: T, domain: Domain) => Result;
+  visualize: (message: T, domain: Domain) => VisualizationResult;
   isCorrectDomain: (domain: Domain) => boolean;
 };
 

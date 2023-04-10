@@ -3,7 +3,7 @@
  */
 
 import { PROTOCOL_ID } from "..";
-import { ASSET_TYPE, AssetInOut, Domain, Protocol, Result } from "../../types";
+import { ASSET_TYPE, AssetInOut, Domain, Protocol, VisualizationResult } from "../../types";
 import { LooksrareMakerOrderWithEncodedParams, STRATEGY } from "../../types/looksrare";
 import { abiCoder, getPaymentAssetType } from "../../utils";
 import { strategiesLookup } from "./const";
@@ -20,7 +20,7 @@ export const isCorrectDomain = (domain: Domain) => {
 export const visualize = (
   message: LooksrareMakerOrderWithEncodedParams,
   domain: Domain
-): Result => {
+): VisualizationResult => {
   if (!isCorrectDomain(domain)) throw new Error("wrong looksrare domain");
 
   const strategy = getExecutionStrategy(message.strategy);

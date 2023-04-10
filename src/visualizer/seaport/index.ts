@@ -1,5 +1,5 @@
 import { PROTOCOL_ID } from "..";
-import { ASSET_TYPE, AssetInOut, Domain, Protocol, Result } from "../../types";
+import { ASSET_TYPE, AssetInOut, Domain, Protocol, VisualizationResult } from "../../types";
 import { SeaPortItemType, SeaPortPayload } from "../../types/seaport";
 import { isSameAddress } from "../../utils";
 
@@ -10,7 +10,7 @@ export const isCorrectDomain = (domain: Domain) => {
   );
 };
 
-export const visualize = (message: SeaPortPayload, domain: Domain): Result => {
+export const visualize = (message: SeaPortPayload, domain: Domain): VisualizationResult => {
   if (!isCorrectDomain(domain)) throw new Error("wrong seaport domain");
 
   const assetOut: AssetInOut[] = [];

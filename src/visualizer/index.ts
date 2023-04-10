@@ -1,4 +1,4 @@
-import { Domain, PermitMessage, Result } from "../types";
+import { Domain, PermitMessage, VisualizationResult } from "../types";
 
 import { SeaPortPayload } from "../types/seaport";
 import { BlurIoOrder } from "../types/blur";
@@ -27,13 +27,13 @@ export const getProtocolId = (domain: Domain): PROTOCOL_ID | undefined => {
 /**
  * @param {T} message EIP-712 message
  * @param {Domain} domain EIP-712 domain
- * @returns {Result} assets impact and message liveness
+ * @returns {VisualizationResult} assets impact and message liveness
  * @throws {Error}
  */
 export default async function visualize<T extends object>(
   message: T,
   domain: Domain
-): Promise<Result> {
+): Promise<VisualizationResult> {
   const protocolId = getProtocolId(domain);
 
   switch (protocolId) {

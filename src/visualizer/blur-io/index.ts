@@ -1,5 +1,5 @@
 import { PROTOCOL_ID } from "..";
-import { ASSET_TYPE, AssetInOut, Domain, Protocol, Result } from "../../types";
+import { ASSET_TYPE, AssetInOut, Domain, Protocol, VisualizationResult } from "../../types";
 import { BlurIoOrder, BlurIoSide } from "../../types/blur";
 import { ZERO_ADDRESS, getPaymentAssetType, isSameAddress } from "../../utils";
 import {
@@ -16,7 +16,7 @@ export const isCorrectDomain = (domain: Domain) => {
   );
 };
 
-export const visualize = (message: BlurIoOrder, domain: Domain): Result => {
+export const visualize = (message: BlurIoOrder, domain: Domain): VisualizationResult => {
   if (!isCorrectDomain(domain)) throw new Error("wrong blur.io domain");
   if (!isValidBlurIoPolicy(message.matchingPolicy))
     throw new Error("unrecognized blur.io matching policy");
