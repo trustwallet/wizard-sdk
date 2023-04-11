@@ -34,7 +34,7 @@ describe("ERC20 Permit", () => {
     }).toThrowError("wrong ERC20 Permit message schema");
   });
 
-  it("should successfully visualize DAI approval", async () => {
+  it("should successfully visualize DAI approvals", async () => {
     const result = await visualize<PermitMessage>(
       erc20DaiPermitMessage,
       erc20PermitDomain
@@ -44,7 +44,7 @@ describe("ERC20 Permit", () => {
       protocol: "ERC20_PERMIT",
       assetsIn: [],
       assetsOut: [],
-      approval: [
+      approvals: [
         {
           address: "0x6B175474E89094C44Da98b954EedeAC495271d0F",
           type: "ERC20",
@@ -59,7 +59,7 @@ describe("ERC20 Permit", () => {
     });
   });
 
-  it("should successfully visualize DAI approval with zero amount", async () => {
+  it("should successfully visualize DAI approvals with zero amount", async () => {
     const result = await visualize<PermitMessage>(
       { ...erc20DaiPermitMessage, allowed: false, nonce: "2" },
       erc20PermitDomain
@@ -69,7 +69,7 @@ describe("ERC20 Permit", () => {
       protocol: "ERC20_PERMIT",
       assetsIn: [],
       assetsOut: [],
-      approval: [
+      approvals: [
         {
           address: "0x6B175474E89094C44Da98b954EedeAC495271d0F",
           type: "ERC20",
@@ -82,14 +82,14 @@ describe("ERC20 Permit", () => {
     });
   });
 
-  it("should successfully visualize ERC2612 approval", async () => {
+  it("should successfully visualize ERC2612 approvals", async () => {
     const result = await visualize<PermitMessage>(ERC2612Message, erc20PermitDomain);
 
     expect(result).toEqual({
       protocol: "ERC20_PERMIT",
       assetsIn: [],
       assetsOut: [],
-      approval: [
+      approvals: [
         {
           address: "0x6B175474E89094C44Da98b954EedeAC495271d0F",
           type: "ERC20",

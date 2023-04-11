@@ -68,7 +68,7 @@ describe("visualizer", () => {
             amounts: ["50", "100"],
           },
         ],
-        approval: [],
+        approvals: [],
       });
     });
 
@@ -96,7 +96,7 @@ describe("visualizer", () => {
             amounts: ["50", "100"],
           },
         ],
-        approval: [],
+        approvals: [],
       });
     });
 
@@ -126,7 +126,7 @@ describe("visualizer", () => {
             amounts: ["1"],
           },
         ],
-        approval: [],
+        approvals: [],
       });
     });
 
@@ -156,7 +156,7 @@ describe("visualizer", () => {
             amounts: ["50", "100"],
           },
         ],
-        approval: [],
+        approvals: [],
       });
     });
 
@@ -181,7 +181,7 @@ describe("visualizer", () => {
             amounts: ["4000000000000000"],
           },
         ],
-        approval: [],
+        approvals: [],
       });
     });
 
@@ -212,7 +212,7 @@ describe("visualizer", () => {
             amounts: ["100000000000000000"],
           },
         ],
-        approval: [],
+        approvals: [],
       });
     });
 
@@ -242,7 +242,7 @@ describe("visualizer", () => {
           from: 1677592745000,
           to: 1678197528000,
         },
-        approval: [],
+        approvals: [],
       });
     });
 
@@ -276,7 +276,7 @@ describe("visualizer", () => {
           from: 1677130860000,
           to: 1677303660000,
         },
-        approval: [],
+        approvals: [],
       });
     });
 
@@ -304,7 +304,7 @@ describe("visualizer", () => {
           from: 1677130860000,
           to: 1677303660000,
         },
-        approval: [],
+        approvals: [],
       });
     });
 
@@ -332,7 +332,7 @@ describe("visualizer", () => {
           from: 1677130860000,
           to: 1677303660000,
         },
-        approval: [],
+        approvals: [],
       });
     });
 
@@ -360,7 +360,7 @@ describe("visualizer", () => {
           from: 1680010140000,
           to: 1680269340000,
         },
-        approval: [],
+        approvals: [],
       });
     });
   });

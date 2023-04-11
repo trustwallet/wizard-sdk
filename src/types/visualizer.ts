@@ -25,7 +25,7 @@ export type VisualizationResult = {
   liveness?: Liveness;
   assetsIn: AssetInOut[];
   assetsOut: AssetInOut[];
-  approval: Approval[];
+  approvals: Approval[];
 };
 
 export type EIP712Protocol<T> = {
