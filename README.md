@@ -52,7 +52,7 @@ type Domain = {
 The returned `VisualizationResult` will contain some important fields like:
 - `assetsIn`, an array of of assets that user should receive.
 - `assetsOut`, an array of the assets that are leaving user wallet.
-- `approval`, an array of assets that user is granting an `operator` approval for.
+- `approvals`, an array of assets that user is granting an `operator` approvals for.
 - `liviness`, an optional object that highlight from and till which timestamp the above information is considered valid by the protocol
 
 # Features

@@ -77,7 +77,7 @@ export const visualize = (
       from: Number(message.startTime) * 1000,
       to: Number(message.endTime) * 1000,
     },
-    approval: [],
+    approvals: [],
   };
 };
 

@@ -130,7 +130,7 @@ export const visualize = (
     },
     assetsIn,
     assetsOut,
-    approval: [],
+    approvals: [],
   };
 };
 

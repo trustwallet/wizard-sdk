@@ -69,7 +69,7 @@ export default class Simulator {
    * @see https://docs.soliditylang.org/en/v0.8.13/abi-spec.html
    * @param {DebugCallTracerWithLogs} data data to be processed recursively
    * @param {Transfer[]} transfersReference mutable array to append transfer records
-   * @param {Approval[]} approvalsReference mutable array to append approval records
+   * @param {Approval[]} approvalsReference mutable array to append approvals records
    */
   private processTraceCallData = (
     data: DebugCallTracerWithLogs,

@@ -16,7 +16,7 @@ export const visualize = (
     protocol: PROTOCOL_ID.ERC20_PERMIT,
     assetsIn: [],
     assetsOut: [],
-    approval: [
+    approvals: [
       {
         address: domain.verifyingContract,
         type: ASSET_TYPE.ERC20,
