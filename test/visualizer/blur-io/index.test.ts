@@ -27,14 +27,14 @@ describe("blur.io", () => {
     const result = await visualize<BlurIoOrder>(blurIoListing, blurIoDomain);
     expect(result).toEqual({
       protocol: "BLUR_IO_MARKETPLACE",
-      assetIn: [
+      assetsIn: [
         {
           address: "0x0000000000000000000000000000000000000000",
           type: "NATIVE",
           amounts: ["760000000000000000"],
         },
       ],
-      assetOut: [
+      assetsOut: [
         {
           address: "0x90c70Dc9f3FDa4a1D78a2B7D90CA087088355717",
           type: "ERC721",
@@ -52,7 +52,7 @@ describe("blur.io", () => {
 
     expect(result).toEqual({
       protocol: "BLUR_IO_MARKETPLACE",
-      assetIn: [
+      assetsIn: [
         {
           address: "0x90c70Dc9f3FDa4a1D78a2B7D90CA087088355717",
           type: "ERC721",
@@ -60,7 +60,7 @@ describe("blur.io", () => {
           amounts: ["1"],
         },
       ],
-      assetOut: [
+      assetsOut: [
         {
           address: "0x0000000000000000000000000000000000000000",
           type: "NATIVE",
@@ -77,14 +77,14 @@ describe("blur.io", () => {
 
     expect(result).toEqual({
       protocol: "BLUR_IO_MARKETPLACE",
-      assetIn: [
+      assetsIn: [
         {
           address: "0xf048cbaad26c1a35e7a04e126fdeb9c8045e676b",
           type: "ERC721",
           amounts: ["1"],
         },
       ],
-      assetOut: [
+      assetsOut: [
         {
           address: "0x0000000000000000000000000000000000000000",
           type: "NATIVE",
@@ -104,7 +104,7 @@ describe("blur.io", () => {
 
     expect(result).toEqual({
       protocol: "BLUR_IO_MARKETPLACE",
-      assetIn: [
+      assetsIn: [
         {
           address: "0x90c70Dc9f3FDa4a1D78a2B7D90CA087088355717",
           type: "ERC721",
@@ -112,7 +112,7 @@ describe("blur.io", () => {
           amounts: ["1"],
         },
       ],
-      assetOut: [
+      assetsOut: [
         {
           address: "0xSomeERC20",
           type: "ERC20",

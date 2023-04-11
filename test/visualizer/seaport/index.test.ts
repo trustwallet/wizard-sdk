@@ -1,4 +1,4 @@
-import { Domain } from "../../../src/types";
+import { Domain } from "../../../src/types/visualizer";
 import visualizer from "../../../src/visualizer";
 import seaport from "../../../src/visualizer/seaport";
 
@@ -33,7 +33,7 @@ describe("visualizer", () => {
           name: seaPortDomainVersion2.name,
           version: seaPortDomainVersion2.version,
         })
-      ).rejects.toThrowError("Unrecognized/Unsupported Protocol Domain");
+      ).rejects.toThrowError("Unrecognized/Unsupported EIP712Protocol Domain");
     });
 
     it("should throw with wrong chain id if seaport module used directly", async () => {
@@ -53,14 +53,14 @@ describe("visualizer", () => {
       expect(result).toEqual({
         protocol: "OPENSEA_SEAPORT",
         liveness: { from: 1680010140000, to: 1680269340000 },
-        assetIn: [
+        assetsIn: [
           {
             address: "0x0000000000000000000000000000000000000000",
             type: "NATIVE",
             amounts: ["760000000000000000", "950000000000000000"],
           },
         ],
-        assetOut: [
+        assetsOut: [
           {
             address: "0x2d33Bfe1c867346543Ac245396DFc6c3EBc8534F",
             type: "ERC1155",
@@ -81,14 +81,14 @@ describe("visualizer", () => {
       expect(result).toEqual({
         protocol: "OPENSEA_SEAPORT",
         liveness: { from: 1680010140000, to: 1680269340000 },
-        assetIn: [
+        assetsIn: [
           {
             address: "0x0000000000000000000000000000000000000000",
             type: "NATIVE",
             amounts: ["760000000000000000", "950000000000000000"],
           },
         ],
-        assetOut: [
+        assetsOut: [
           {
             address: "0x2d33Bfe1c867346543Ac245396DFc6c3EBc8534F",
             type: "ERC1155",
@@ -111,7 +111,7 @@ describe("visualizer", () => {
       expect(result).toEqual({
         protocol: "OPENSEA_SEAPORT",
         liveness: { from: 1680010140000, to: 1680269340000 },
-        assetIn: [
+        assetsIn: [
           {
             address: "0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D",
             type: "ERC721",
@@ -119,7 +119,7 @@ describe("visualizer", () => {
             id: "",
           },
         ],
-        assetOut: [
+        assetsOut: [
           {
             address: "0x2d33Bfe1c867346543Ac245396DFc6c3EBc8534F",
             type: "ERC721",
@@ -141,7 +141,7 @@ describe("visualizer", () => {
       expect(result).toEqual({
         protocol: "OPENSEA_SEAPORT",
         liveness: { from: 1680010140000, to: 1680269340000 },
-        assetIn: [
+        assetsIn: [
           {
             address: "0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D",
             type: "ERC1155",
@@ -149,7 +149,7 @@ describe("visualizer", () => {
             id: "",
           },
         ],
-        assetOut: [
+        assetsOut: [
           {
             address: "0x2d33Bfe1c867346543Ac245396DFc6c3EBc8534F",
             type: "ERC1155",
@@ -166,7 +166,7 @@ describe("visualizer", () => {
       expect(result).toEqual({
         protocol: "OPENSEA_SEAPORT",
         liveness: { from: 1678465649000, to: 1678724843000 },
-        assetIn: [
+        assetsIn: [
           {
             address: "0x60E4d786628Fea6478F785A6d7e704777c86a7c6",
             type: "ERC721",
@@ -174,7 +174,7 @@ describe("visualizer", () => {
             amounts: ["1"],
           },
         ],
-        assetOut: [
+        assetsOut: [
           {
             address: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
             type: "ERC20",
@@ -197,7 +197,7 @@ describe("visualizer", () => {
           from: 1677592745000,
           to: 1678197528000,
         },
-        assetIn: [
+        assetsIn: [
           {
             address: "0xED5AF388653567Af2F388E6224dC7C4b3241C544",
             type: "ERC721",
@@ -205,7 +205,7 @@ describe("visualizer", () => {
             amounts: ["5"],
           },
         ],
-        assetOut: [
+        assetsOut: [
           {
             address: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
             type: "ERC20",
@@ -223,7 +223,7 @@ describe("visualizer", () => {
       );
       expect(result).toEqual({
         protocol: "OPENSEA_SEAPORT",
-        assetIn: [
+        assetsIn: [
           {
             address: "0xED5AF388653567Af2F388E6224dC7C4b3241C544",
             type: "ERC721",
@@ -231,7 +231,7 @@ describe("visualizer", () => {
             amounts: ["3"],
           },
         ],
-        assetOut: [
+        assetsOut: [
           {
             address: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
             type: "ERC20",
@@ -251,14 +251,14 @@ describe("visualizer", () => {
 
       expect(result).toEqual({
         protocol: "OPENSEA_SEAPORT",
-        assetIn: [
+        assetsIn: [
           {
             address: "0x0000000000000000000000000000000000000000",
             type: "NATIVE",
             amounts: ["4975000000000000000"],
           },
         ],
-        assetOut: [
+        assetsOut: [
           {
             address: "0x2d33Bfe1c867346543Ac245396DFc6c3EBc8534F",
             type: "ERC721",
@@ -285,7 +285,7 @@ describe("visualizer", () => {
 
       expect(result).toEqual({
         protocol: "OPENSEA_SEAPORT",
-        assetIn: [
+        assetsIn: [
           {
             address: "0xED5AF388653567Af2F388E6224dC7C4b3241C544",
             type: "ERC721",
@@ -293,7 +293,7 @@ describe("visualizer", () => {
             amounts: ["1"],
           },
         ],
-        assetOut: [
+        assetsOut: [
           {
             address: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
             type: "ERC20",
@@ -313,14 +313,14 @@ describe("visualizer", () => {
 
       expect(result).toEqual({
         protocol: "OPENSEA_SEAPORT",
-        assetIn: [
+        assetsIn: [
           {
             address: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
             type: "ERC20",
             amounts: ["950000000000000000"],
           },
         ],
-        assetOut: [
+        assetsOut: [
           {
             address: "0x2d33Bfe1c867346543Ac245396DFc6c3EBc8534F",
             type: "ERC721",
@@ -341,14 +341,14 @@ describe("visualizer", () => {
 
       expect(result).toEqual({
         protocol: "OPENSEA_SEAPORT",
-        assetIn: [
+        assetsIn: [
           {
             address: "0x0000000000000000000000000000000000000000",
             type: "NATIVE",
             amounts: ["760000000000000000", "950000000000000000"],
           },
         ],
-        assetOut: [
+        assetsOut: [
           {
             address: "0x2d33Bfe1c867346543Ac245396DFc6c3EBc8534F",
             type: "ERC721",

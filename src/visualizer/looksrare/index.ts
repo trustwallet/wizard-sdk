@@ -3,8 +3,9 @@
  */
 
 import { PROTOCOL_ID } from "..";
-import { ASSET_TYPE, AssetInOut, Domain, Protocol, Result } from "../../types";
+import { ASSET_TYPE, AssetInOut } from "../../types";
 import { LooksrareMakerOrderWithEncodedParams, STRATEGY } from "../../types/looksrare";
+import { Domain, EIP712Protocol, VisualizationResult } from "../../types/visualizer";
 import { abiCoder, getPaymentAssetType } from "../../utils";
 import { strategiesLookup } from "./const";
 
@@ -20,7 +21,7 @@ export const isCorrectDomain = (domain: Domain) => {
 export const visualize = (
   message: LooksrareMakerOrderWithEncodedParams,
   domain: Domain
-): Result => {
+): VisualizationResult => {
   if (!isCorrectDomain(domain)) throw new Error("wrong looksrare domain");
 
   const strategy = getExecutionStrategy(message.strategy);
@@ -70,8 +71,8 @@ export const visualize = (
   return {
     protocol: PROTOCOL_ID.LOOKSRARE_EXCHANGE,
     // If order is an ask, user is selling an NFT for an asset in return
-    assetIn: [isOrderAsk ? paymentAsset : nftAsset],
-    assetOut: [isOrderAsk ? nftAsset : paymentAsset],
+    assetsIn: [isOrderAsk ? paymentAsset : nftAsset],
+    assetsOut: [isOrderAsk ? nftAsset : paymentAsset],
     liveness: {
       from: Number(message.startTime) * 1000,
       to: Number(message.endTime) * 1000,
@@ -100,7 +101,7 @@ const getExecutionStrategy = (strategyAddress: string): STRATEGY => {
   return strategiesLookup[strategyAddress.toLocaleLowerCase()] || STRATEGY.UNKNOWN;
 };
 
-const looksrare: Protocol<LooksrareMakerOrderWithEncodedParams> = {
+const looksrare: EIP712Protocol<LooksrareMakerOrderWithEncodedParams> = {
   isCorrectDomain,
   visualize,
 };

@@ -19,13 +19,13 @@ export const MaxUint256 = BigInt(
 
 export const abiCoder = new AbiCoder();
 
-// export const decodeErrorMessage = (output: string): string => {
-//   if (output.indexOf(REQUIRE_ERROR_SIGNATURE) === 0) {
-//     const errorMessage = output.slice(REQUIRE_ERROR_SIGNATURE.length);
-//     return abiCoder.decode(["string"], `0x${errorMessage}`)[0];
-//   }
-//   return output;
-// };
+export const decodeErrorMessage = (output: string): string => {
+  if (output.indexOf(REQUIRE_ERROR_SIGNATURE) === 0) {
+    const errorMessage = output.slice(REQUIRE_ERROR_SIGNATURE.length);
+    return abiCoder.decode(["string"], `0x${errorMessage}`)[0];
+  }
+  return output;
+};
 
 /// @dev assets ERCs event index hashes
 export const ERC721_ERC1155_APPROVE_ALL_TOPIC =

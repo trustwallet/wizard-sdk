@@ -42,8 +42,8 @@ describe("ERC20 Permit", () => {
 
     expect(result).toEqual({
       protocol: "ERC20_PERMIT",
-      assetIn: [],
-      assetOut: [],
+      assetsIn: [],
+      assetsOut: [],
       approval: [
         {
           address: "0x6B175474E89094C44Da98b954EedeAC495271d0F",
@@ -67,8 +67,8 @@ describe("ERC20 Permit", () => {
 
     expect(result).toEqual({
       protocol: "ERC20_PERMIT",
-      assetIn: [],
-      assetOut: [],
+      assetsIn: [],
+      assetsOut: [],
       approval: [
         {
           address: "0x6B175474E89094C44Da98b954EedeAC495271d0F",
@@ -87,8 +87,8 @@ describe("ERC20 Permit", () => {
 
     expect(result).toEqual({
       protocol: "ERC20_PERMIT",
-      assetIn: [],
-      assetOut: [],
+      assetsIn: [],
+      assetsOut: [],
       approval: [
         {
           address: "0x6B175474E89094C44Da98b954EedeAC495271d0F",

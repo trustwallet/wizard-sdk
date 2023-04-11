@@ -27,19 +27,19 @@ after installing the sdk, import the visualize function
 ``` typescript
 import { visualize } from '@trustwallet/wizard-sdk';
 ```
-The visualize is an async function that accepts two parameters, the `message` as an arbitrary object and `domain` as a strongly typed object aligned with EIP-712 domain structure and returns `Result` promise or can **throw** if the protocol is not handled or wrong message or domain content for example.
+The visualize is an async function that accepts two parameters, the `message` as an arbitrary object and `domain` as a strongly typed object aligned with EIP-712 domain structure and returns `VisualizationResult` promise or can **throw** if the protocol is not handled or wrong message or domain content for example.
 
 ```typescript
 /**
  * @param {T} message EIP-712 message
  * @param {Domain} domain EIP-712 domain
- * @returns {Result} assets impact and message liveness
+ * @returns {VisualizationResult} assets impact and message liveness
  * @throws {Error}
  */
 async function visualize<T extends object>(
   message: T,
   domain: Domain
-): Promise<Result>;
+): Promise<VisualizationResult>;
 
 type Domain = {
   verifyingContract: string;
@@ -49,9 +49,9 @@ type Domain = {
 };
 ```
 
-The returned `Result` will contain some important fields like:
-- `assetIn`, an array of of assets that user should receive.
-- `assetOut`, an array of the assets that are leaving user wallet.
+The returned `VisualizationResult` will contain some important fields like:
+- `assetsIn`, an array of of assets that user should receive.
+- `assetsOut`, an array of the assets that are leaving user wallet.
 - `approval`, an array of assets that user is granting an `operator` approval for.
 - `liviness`, an optional object that highlight from and till which timestamp the above information is considered valid by the protocol
 

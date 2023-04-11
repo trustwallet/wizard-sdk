@@ -1,6 +1,7 @@
 import { PROTOCOL_ID } from "..";
-import { ASSET_TYPE, AssetInOut, Domain, Protocol, Result } from "../../types";
+import { ASSET_TYPE, AssetInOut } from "../../types";
 import { BlurIoOrder, BlurIoSide } from "../../types/blur";
+import { Domain, EIP712Protocol, VisualizationResult } from "../../types/visualizer";
 import { ZERO_ADDRESS, getPaymentAssetType, isSameAddress } from "../../utils";
 import {
   BLUR_IO_COLLECTION_BID_POLICY,
@@ -16,7 +17,7 @@ export const isCorrectDomain = (domain: Domain) => {
   );
 };
 
-export const visualize = (message: BlurIoOrder, domain: Domain): Result => {
+export const visualize = (message: BlurIoOrder, domain: Domain): VisualizationResult => {
   if (!isCorrectDomain(domain)) throw new Error("wrong blur.io domain");
   if (!isValidBlurIoPolicy(message.matchingPolicy))
     throw new Error("unrecognized blur.io matching policy");
@@ -53,27 +54,27 @@ export const visualize = (message: BlurIoOrder, domain: Domain): Result => {
   if (isSameAddress(message.matchingPolicy, BLUR_IO_COLLECTION_BID_POLICY))
     delete nftAsset.id;
 
-  const assetIn: AssetInOut[] = [];
-  const assetOut: AssetInOut[] = [];
+  const assetsIn: AssetInOut[] = [];
+  const assetsOut: AssetInOut[] = [];
   const tradeSide = Number(message.side);
   if (tradeSide === BlurIoSide.Sell) {
     paymentAsset.amounts.push(netPrice.toString());
 
-    assetOut.push(nftAsset);
-    assetIn.push(paymentAsset);
+    assetsOut.push(nftAsset);
+    assetsIn.push(paymentAsset);
   } else if (tradeSide === BlurIoSide.Buy) {
     paymentAsset.amounts.push(price.toString());
 
-    assetOut.push(paymentAsset);
-    assetIn.push(nftAsset);
+    assetsOut.push(paymentAsset);
+    assetsIn.push(nftAsset);
   } else {
     throw new Error("unrecognized blur.io order side");
   }
 
   return {
     protocol: PROTOCOL_ID.BLUR_IO_MARKETPLACE,
-    assetIn,
-    assetOut,
+    assetsIn,
+    assetsOut,
     liveness: {
       from: Number(message.listingTime) * 1000,
       to: Number(message.expirationTime) * 1000,
@@ -87,7 +88,7 @@ const addressesBook = [
   "0x000000000000ad05ccc4f10045630fb830b95127", // Mainnet
 ].map((e) => e.toLocaleLowerCase());
 
-const blurIo: Protocol<BlurIoOrder> = {
+const blurIo: EIP712Protocol<BlurIoOrder> = {
   isCorrectDomain,
   visualize,
 };

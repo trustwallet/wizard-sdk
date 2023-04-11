@@ -1,8 +1,12 @@
-import { ASSET_TYPE, Domain, PermitMessage, Result } from "../../types";
+import { ASSET_TYPE, PermitMessage } from "../../types";
 import { PROTOCOL_ID } from "..";
 import { MaxUint256 } from "../../utils";
+import { Domain, VisualizationResult } from "../../types/visualizer";
 
-export const visualize = (message: PermitMessage, domain: Domain): Result => {
+export const visualize = (
+  message: PermitMessage,
+  domain: Domain
+): VisualizationResult => {
   if (!isERC20Permit(message)) throw new Error("wrong ERC20 Permit message schema");
   const amount =
     message.value?.toString() ||
@@ -10,8 +14,8 @@ export const visualize = (message: PermitMessage, domain: Domain): Result => {
 
   return {
     protocol: PROTOCOL_ID.ERC20_PERMIT,
-    assetIn: [],
-    assetOut: [],
+    assetsIn: [],
+    assetsOut: [],
     approval: [
       {
         address: domain.verifyingContract,

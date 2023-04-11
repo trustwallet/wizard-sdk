@@ -1,4 +1,4 @@
-import { Domain, PermitMessage, Result } from "../types";
+import { PermitMessage } from "../types";
 
 import { SeaPortPayload } from "../types/seaport";
 import { BlurIoOrder } from "../types/blur";
@@ -8,6 +8,7 @@ import blurIo from "./blur-io";
 import erc20Permit from "./erc20-permit";
 import looksrare from "./looksrare";
 import seaport from "./seaport";
+import { Domain, VisualizationResult } from "../types/visualizer";
 
 export enum PROTOCOL_ID {
   OPENSEA_SEAPORT = "OPENSEA_SEAPORT",
@@ -27,13 +28,13 @@ export const getProtocolId = (domain: Domain): PROTOCOL_ID | undefined => {
 /**
  * @param {T} message EIP-712 message
  * @param {Domain} domain EIP-712 domain
- * @returns {Result} assets impact and message liveness
+ * @returns {VisualizationResult} assets impact and message liveness
  * @throws {Error}
  */
 export default async function visualize<T extends object>(
   message: T,
   domain: Domain
-): Promise<Result> {
+): Promise<VisualizationResult> {
   const protocolId = getProtocolId(domain);
 
   switch (protocolId) {
@@ -51,6 +52,6 @@ export default async function visualize<T extends object>(
         return erc20Permit.visualize(message as PermitMessage, domain);
       }
 
-      throw new Error("Unrecognized/Unsupported Protocol Domain");
+      throw new Error("Unrecognized/Unsupported EIP712Protocol Domain");
   }
 }
