@@ -2,7 +2,12 @@ import { PROTOCOL_ID } from "..";
 import { ASSET_TYPE, AssetInOut } from "../../types";
 import { BlurIoOrder, BlurIoSide } from "../../types/blur";
 import { Domain, EIP712Protocol, VisualizationResult } from "../../types/visualizer";
-import { ZERO_ADDRESS, getPaymentAssetType, isSameAddress } from "../../utils";
+import {
+  WizardError,
+  ZERO_ADDRESS,
+  getPaymentAssetType,
+  isSameAddress,
+} from "../../utils";
 import {
   BLUR_IO_COLLECTION_BID_POLICY,
   BLUR_IO_INVERSE_BASIS_POINT,
@@ -20,7 +25,7 @@ export const isCorrectDomain = (domain: Domain) => {
 export const visualize = (message: BlurIoOrder, domain: Domain): VisualizationResult => {
   if (!isCorrectDomain(domain)) throw new Error("wrong blur.io domain");
   if (!isValidBlurIoPolicy(message.matchingPolicy))
-    throw new Error("unrecognized blur.io matching policy");
+    throw new WizardError("unrecognized blur.io matching policy");
 
   // Fees and Price calculation
   const price = BigInt(message.price);
@@ -68,7 +73,7 @@ export const visualize = (message: BlurIoOrder, domain: Domain): VisualizationRe
     assetsOut.push(paymentAsset);
     assetsIn.push(nftAsset);
   } else {
-    throw new Error("unrecognized blur.io order side");
+    throw new WizardError("unrecognized blur.io order side");
   }
 
   return {

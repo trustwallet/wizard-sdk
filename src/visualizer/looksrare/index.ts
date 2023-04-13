@@ -6,7 +6,7 @@ import { PROTOCOL_ID } from "..";
 import { ASSET_TYPE, AssetInOut } from "../../types";
 import { LooksrareMakerOrderWithEncodedParams, STRATEGY } from "../../types/looksrare";
 import { Domain, EIP712Protocol, VisualizationResult } from "../../types/visualizer";
-import { abiCoder, getPaymentAssetType } from "../../utils";
+import { WizardError, abiCoder, getPaymentAssetType } from "../../utils";
 import { strategiesLookup } from "./const";
 
 const { ERC1155, ERC721 } = ASSET_TYPE;
@@ -26,7 +26,7 @@ export const visualize = (
 
   const strategy = getExecutionStrategy(message.strategy);
   if (strategy === STRATEGY.UNKNOWN)
-    throw new Error(`unknown looksrare strategy ${message.strategy}`);
+    throw new WizardError(`unknown looksrare strategy ${message.strategy}`);
 
   const nftAsset: AssetInOut = {
     address: message.collection,

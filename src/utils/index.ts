@@ -66,3 +66,14 @@ export const getPaymentAssetType = (tokenAddress: string): ASSET_TYPE => {
 
   return isNative ? ASSET_TYPE.NATIVE : ASSET_TYPE.ERC20;
 };
+
+/**
+ * @param {string} message error message
+ * @throws WizardError
+ */
+export class WizardError extends Error {
+  constructor(message: string) {
+    super(message);
+    this.name = "WizardError";
+  }
+}

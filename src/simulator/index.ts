@@ -14,6 +14,7 @@ import {
   ERC20_ERC721_TRANSFER_TOPIC,
   ERC721_ERC1155_APPROVE_ALL_TOPIC,
   TRUE,
+  WizardError,
   ZERO_ADDRESS,
   abiCoder,
   addressFrom32bytesTo20bytes,
@@ -34,18 +35,18 @@ export default class Simulator {
   }
 
   async simulate(params: SimulationParams): Promise<AssetsTransfersAndApprovalsRes> {
-    if (!params.chainId) throw new Error("undefined chainId param");
+    if (!params.chainId) throw new WizardError("undefined chainId param");
 
-    if (!params.from) throw new Error("undefined from param");
+    if (!params.from) throw new WizardError("undefined from param");
 
-    if (!params.to) throw new Error("undefined to param");
+    if (!params.to) throw new WizardError("undefined to param");
 
-    if (!params.calldata) throw new Error("undefined to calldata");
+    if (!params.calldata) throw new WizardError("undefined calldata param");
 
     const debugTraceCall = this.providers[params.chainId];
 
     if (!debugTraceCall) {
-      throw new Error(`Simulator: no debugProvider found for chainId: ${params.chainId}`);
+      throw new WizardError(`unsupported chain_id: ${params.chainId}`);
     }
 
     const trace = await debugTraceCall(params);
@@ -78,7 +79,7 @@ export default class Simulator {
   ) => {
     data?.forEach((call) => {
       if (call.error) {
-        throw new Error(
+        throw new WizardError(
           `Transaction will fail with error: '${decodeErrorMessage(call.output)}'`
         );
       }

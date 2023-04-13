@@ -1,13 +1,13 @@
 import { ASSET_TYPE, PermitMessage } from "../../types";
 import { PROTOCOL_ID } from "..";
-import { MaxUint256 } from "../../utils";
+import { MaxUint256, WizardError } from "../../utils";
 import { Domain, VisualizationResult } from "../../types/visualizer";
 
 export const visualize = (
   message: PermitMessage,
   domain: Domain
 ): VisualizationResult => {
-  if (!isERC20Permit(message)) throw new Error("wrong ERC20 Permit message schema");
+  if (!isERC20Permit(message)) throw new WizardError("wrong ERC20 Permit message schema");
   const amount =
     message.value?.toString() ||
     (message.allowed?.toString() === "true" ? MaxUint256.toString() : "0");
