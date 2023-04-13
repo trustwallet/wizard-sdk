@@ -1,5 +1,6 @@
 import { DebugCallTracerWithLogs, DebugProvider } from "../../types/simulator";
 import axios from "axios";
+import { WizardError } from "../../utils";
 
 type CallTracerParams = {
   from: string;
@@ -83,7 +84,7 @@ async function callTracer(
   if (!res.data.result) {
     const errorCode = res.data?.error?.code;
     const message = res.data?.error?.message;
-    throw new Error(
+    throw new WizardError(
       `NodeReal: simulation failed with code error: ${errorCode} and message: ${message}`
     );
   }

@@ -9,6 +9,7 @@ import erc20Permit from "./erc20-permit";
 import looksrare from "./looksrare";
 import seaport from "./seaport";
 import { Domain, VisualizationResult } from "../types/visualizer";
+import { WizardError } from "../utils";
 
 export enum PROTOCOL_ID {
   OPENSEA_SEAPORT = "OPENSEA_SEAPORT",
@@ -52,6 +53,6 @@ export default async function visualize<T extends object>(
         return erc20Permit.visualize(message as PermitMessage, domain);
       }
 
-      throw new Error("Unrecognized/Unsupported EIP712Protocol Domain");
+      throw new WizardError("Unrecognized/Unsupported EIP712Protocol Domain");
   }
 }
