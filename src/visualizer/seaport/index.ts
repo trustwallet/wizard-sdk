@@ -177,8 +177,10 @@ const supportedChains = [
  * and there's a note regarding some limitation so we decided to not support them
  * @see https://github.com/ProjectOpenSea/seaport#deployments-by-evm-chain
  * @see https://github.com/ProjectOpenSea/seaport-js/blob/main/src/constants.ts#L5
+ * @see https://docs.opensea.io/changelog/seaport-1-5-release
  */
 const addressesBook = [
+  "0x00000000000000adc04c56bf30ac9d3c0aaf14dc", //v1.5 https://docs.opensea.io/changelog/seaport-1-5-release
   "0x00000000000001ad428e4906aE43D8F9852d0dD6", //v1.4
   "0x00000000006c3852cbEf3e08E8dF289169EdE581", //v1.1
 ].map((e) => e.toLocaleLowerCase());
