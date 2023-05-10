@@ -90,7 +90,7 @@ export default class Simulator {
           type: NATIVE,
           from: call.from,
           to: call.to,
-          amount: call.value,
+          amount: BigInt(call.value).toString(),
           id: "",
         });
       }
@@ -103,6 +103,7 @@ export default class Simulator {
         // keccak256(Transfer(address,address,uint256))
         if (eventHash === ERC20_ERC721_TRANSFER_TOPIC) {
           // ERC20 Transfer event have a topics array of 3 elements (eventHash, and 2 indexed addresses)
+          // This one also covers cryptoPunks but as ERC20 token only, if we notice a high volume we can support `PunkBought` event
           if (event.topics.length === 3) {
             const [, _from, _to] = event.topics;
             const from = addressFrom32bytesTo20bytes(_from);
@@ -115,9 +116,11 @@ export default class Simulator {
               to,
               amount,
             });
-          }
-          // ERC721 Transfer event have a topics array of 4 elements (eventHash, and 2 indexed addresses and an indexed tokenId)
-          else {
+          } else {
+            /**
+             * @dev ERC721 Transfer event have a topics array of 4 elements (eventHash, and 2 indexed addresses and an indexed tokenId)
+             * the explicit `else` also cover CryptoKitties case where non of event arguments is indexed (event.topics.length ===1) @see https://etherscan.io/address/0x06012c8cf97bead5deae237070f9587f8e7a266d#code
+             */
             const [, _from, _to, _tokenId] = event.topics;
             const from = addressFrom32bytesTo20bytes(_from);
             const to = addressFrom32bytesTo20bytes(_to);
