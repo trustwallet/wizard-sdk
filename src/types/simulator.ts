@@ -35,14 +35,14 @@ export type DebugCallTracerWithLogs = DebugCallTracerWithLog[];
 export type Approval = {
   owner: string;
   operator: string;
-  amount?: string;
+  amounts?: string[];
   approveForAllStatus?: boolean;
 } & Asset;
 
 export type Transfer = {
   from: string;
   to: string;
-  amount?: string;
+  amounts?: string[];
   operator?: string;
 } & Asset;
 
