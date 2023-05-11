@@ -90,7 +90,7 @@ export default class Simulator {
           type: NATIVE,
           from: call.from,
           to: call.to,
-          amount: BigInt(call.value).toString(),
+          amounts: [BigInt(call.value).toString()],
           id: "",
         });
       }
@@ -114,7 +114,7 @@ export default class Simulator {
               type: ERC20,
               from,
               to,
-              amount,
+              amounts: [amount],
             });
           } else {
             /**
@@ -149,7 +149,7 @@ export default class Simulator {
               type: ERC20,
               owner,
               operator,
-              amount,
+              amounts: [amount],
             });
           }
           // ERC721 Approval event have a topics array of 4 elements (eventHash, and 2 indexed addresses and an indexed tokenId)
@@ -197,7 +197,7 @@ export default class Simulator {
             from,
             to,
             operator,
-            amount: BigInt(amount).toString(),
+            amounts: [BigInt(amount).toString()],
             id: BigInt(id).toString(),
           });
         }
@@ -219,7 +219,7 @@ export default class Simulator {
               from,
               to,
               operator,
-              amount: BigInt(amount).toString(),
+              amounts: [BigInt(amount).toString()],
               id: BigInt(id).toString(),
             });
           });
