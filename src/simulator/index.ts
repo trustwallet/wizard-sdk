@@ -80,7 +80,9 @@ export default class Simulator {
     data?.forEach((call) => {
       if (call.error) {
         throw new WizardError(
-          `Transaction will fail with error: '${decodeErrorMessage(call.output)}'`
+          `Transaction will fail with error: '${
+            call.output ? decodeErrorMessage(call.output) : call.error
+          }'`
         );
       }
       // handle native ETH transfers

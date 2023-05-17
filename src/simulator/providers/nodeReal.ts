@@ -7,7 +7,7 @@ type CallTracerParams = {
   to: string;
   value: string;
   data: string;
-  gas: number;
+  gas: string;
 };
 
 const baseURLs: { [chainId: number]: string } = {};
@@ -27,7 +27,7 @@ export const nodeRealFactory = (apiKey: string, chainId: number): DebugProvider 
           to: input.to,
           data: input.calldata,
           value: input.value || "0x0",
-          gas: input.gas,
+          gas: `0x${input.gas.toString(16)}`,
         },
         baseURLs[chainId]
       ),
