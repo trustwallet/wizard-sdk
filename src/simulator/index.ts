@@ -20,7 +20,7 @@ import {
   addressFrom32bytesTo20bytes,
   decodeErrorMessage,
 } from "../utils";
-import { nodeRealFactory } from "./providers";
+import { nodeRealFactory , alchemyFactory } from "./providers";
 
 const { ERC1155, ERC20, ERC721, NATIVE } = ASSET_TYPE;
 export default class Simulator {
@@ -234,4 +234,5 @@ export default class Simulator {
   };
 
   static nodeRealFactory = nodeRealFactory;
+  static alchemyFactory = alchemyFactory;
 }
