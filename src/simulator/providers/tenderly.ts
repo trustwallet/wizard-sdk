@@ -3,6 +3,9 @@ import axios from "axios";
 import { WizardError } from "../../utils";
 
 type CallTracerParams = {
+  network_id: string;
+  block_number: string;
+  input: string;
   from: string;
   to: string;
   value: string;
@@ -10,30 +13,30 @@ type CallTracerParams = {
   gas: string;
 };
 
-const baseURLs: { [chainId: number]: string } = {};
 
-export const alchemyFactory = (apiKey: string, chainId: number): DebugProvider => {
-  if (chainId !== 1 && chainId !== 5) {
-    throw new Error(`Alchemy: unsupported chainId: ${chainId}`);
-  }
+export const tenderlyFactory = (apiKey: string, chainId: number , accountID  : string, projectID : string): DebugProvider => {
 
-  baseURLs[chainId] = getBaseURL(chainId, apiKey);
+
+  const baseURLs = getBaseURL(accountID, projectID);
 
   return {
     chainId,
     debugTrace: (input) =>
       callTracer(
         {
+          network_id: `${chainId.toString()}`,  
           from: input.from,
+          block_number ,
           to: input.to,
           data: input.calldata,
           value: input.value || "0x0",
           gas: `0x${input.gas.toString(16)}`,
+          input: input.calldata,
         },
-        baseURLs[chainId]
+        baseURLs,
+        apiKey
       ),
   };
-};
 
 /**
  *
@@ -45,43 +48,35 @@ export const alchemyFactory = (apiKey: string, chainId: number): DebugProvider =
  * @see https://geth.ethereum.org/docs/developers/evm-tracing/built-in-tracers#config to understand better the tracers config
  * @see
  */
+
 async function callTracer(
-  { from, to, value, data, gas }: CallTracerParams,
-  baseURL: string
+  { from, to, value, data, gas , block_number , network_id , input  }: CallTracerParams,
+  baseURL: string,
+  apiKey: string
 ): Promise<DebugCallTracerWithLogs> {
-    
   const res = await axios.post(baseURL, {
     id: 1,
     jsonrpc: "2.0",
-    method: "trace_call",
+    method: "debug_traceCall",
     params: [
       {
+        network_id,
+        block_number,
         from,
+        input,
         to,
+        gas,
         value,
         data,
-        gas,
-      },
-      /**
-       * @dev ethereum commitment tags: latest | safe | finalized | earliest | pending
-       *      earliest ≤ finalized ≤ safe ≤ latest ≤ pending
-       * @see https://docs.alchemy.com/reference/ethereum-developer-guide-to-the-merge#what-are-safe-and-finalized
-       */
-      "latest",
-      {
-        /**
-         * @dev callTracer accepts two options
-         *      - onlyTopCall: true instructs the tracer to only process the main (top-level) call and none of the sub-calls.
-         *      This avoids extra processing for each call frame if only the top-level call info are required.
-         *      - withLog: true instructs the tracer to also collect the logs emitted during each call.
-         */
-        tracer: "callTracer",
-        tracerConfig: {
-          withLog: true,
-        },
       },
     ],
-  });
+  } , {
+        headers: {
+            Authorization: `Bearer ${apiKey}`, // Replace <TOKEN> with your actual authorization token
+            "Content-Type": "application/json",
+          },
+      }
+  );
 
   if (!res.data.result) {
     const errorCode = res.data?.error?.code;
@@ -95,11 +90,11 @@ async function callTracer(
   return [res.data.result] as DebugCallTracerWithLogs;
 }
 
-function getBaseURL(chainId: 1 | 5, apiKey: string): string {
-  const baseURLs = {
-    1: `https://eth-mainnet.g.alchemy.com/v2//${apiKey}`,
-    5: `https://eth-goerli.g.alchemy.com/v2/${apiKey}`,
-  };
+function getBaseURL(accountID : string , projectID : string): string {
+  const baseURLs = `https://api.tenderly.co/api/v1/account/${accountID}/project/${projectID}/simulate`;
 
-  return baseURLs[chainId];
+  return baseURLs;
 }
+
+
+};
