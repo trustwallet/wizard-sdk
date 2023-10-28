@@ -4,7 +4,7 @@ import { WizardError } from "../../utils";
 
 type CallTracerParams = {
   network_id: string;
-  block_number: string;
+  block_number?: number;
   input: string;
   from: string;
   to: string;
@@ -26,7 +26,7 @@ export const tenderlyFactory = (apiKey: string, chainId: number , accountID  : s
         {
           network_id: `${chainId.toString()}`,  
           from: input.from,
-          block_number ,
+          block_number: input.blockNumber,
           to: input.to,
           data: input.calldata,
           value: input.value || "0x0",
@@ -54,11 +54,7 @@ async function callTracer(
   baseURL: string,
   apiKey: string
 ): Promise<DebugCallTracerWithLogs> {
-  const res = await axios.post(baseURL, {
-    id: 1,
-    jsonrpc: "2.0",
-    method: "debug_traceCall",
-    params: [
+  const res = await axios.post(baseURL, 
       {
         network_id,
         block_number,
@@ -69,14 +65,19 @@ async function callTracer(
         value,
         data,
       },
-    ],
-  } , {
+      {
         headers: {
             Authorization: `Bearer ${apiKey}`, // Replace <TOKEN> with your actual authorization token
             "Content-Type": "application/json",
           },
       }
   );
+
+  const transaction = res.data.transaction;
+
+  const callTrace = transaction.transaction_info.call_trace;
+
+  const logs = res.data.transaction.transaction_info.logs;
 
   if (!res.data.result) {
     const errorCode = res.data?.error?.code;
@@ -87,7 +88,7 @@ async function callTracer(
   }
 
   /// @dev returned as an array to keep same pattern with internal call facilitate recursive processing
-  return [res.data.result] as DebugCallTracerWithLogs;
+  return [callTrace , logs] as DebugCallTracerWithLogs;
 }
 
 function getBaseURL(accountID : string , projectID : string): string {

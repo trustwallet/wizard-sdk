@@ -7,6 +7,7 @@ export type SimulationParams = {
   gas: number;
   value?: string;
   chainId: number;
+  blockNumber?: number;
 };
 
 type DebugCallTracerWithLogsCall = {
