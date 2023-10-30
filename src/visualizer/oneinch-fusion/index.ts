@@ -67,8 +67,8 @@ export const visualize = (
     assetsIn,
     assetsOut,
     liveness: {
-      from: startTime,
-      to: endTime,
+      from: startTime * 1000,
+      to: endTime * 1000,
     },
     approvals: [],
   };
