@@ -1,6 +1,7 @@
 export * as blurTypes from "./blur";
 export * as looksrareTypes from "./looksrare";
 export * as seaportTypes from "./seaport";
+export * as raribleV2Types from "./rarible-v2";
 export * as visualizer from "./visualizer";
 
 export enum ASSET_TYPE {

@@ -3,21 +3,25 @@ import { PermitMessage } from "../types";
 import { SeaPortPayload } from "../types/seaport";
 import { BlurIoOrder } from "../types/blur";
 import { LooksrareMakerOrderWithEncodedParams } from "../types/looksrare";
+import { LooksRareV2MakerOrder } from "../types/looksrare-v2";
+import { RaribleV2Order } from "../types/rarible-v2";
+import { Domain, VisualizationResult } from "../types/visualizer";
 
+import seaport from "./seaport";
 import blurIo from "./blur-io";
-import erc20Permit from "./erc20-permit";
 import looksrare from "./looksrare";
 import looksrareV2 from "./looksrare-v2";
-import seaport from "./seaport";
-import { Domain, VisualizationResult } from "../types/visualizer";
+import raribleV2 from "./rarible-v2";
+import erc20Permit from "./erc20-permit";
+
 import { WizardError } from "../utils";
-import { LooksRareV2MakerOrder } from "../types/looksrare-v2";
 
 export enum PROTOCOL_ID {
   OPENSEA_SEAPORT = "OPENSEA_SEAPORT",
   LOOKSRARE_EXCHANGE = "LOOKSRARE_EXCHANGE",
   LOOKSRARE_EXCHANGE_V2 = "LOOKSRARE_EXCHANGE_V2",
   BLUR_IO_MARKETPLACE = "BLUR_IO_MARKETPLACE",
+  RARIBLE_EXCHANGE_V2 = "RARIBLE_EXCHANGE_V2",
   ERC20_PERMIT = "ERC20_PERMIT",
 }
 
@@ -26,6 +30,7 @@ export const getProtocolId = (domain: Domain): PROTOCOL_ID | undefined => {
   if (blurIo.isCorrectDomain(domain)) return PROTOCOL_ID.BLUR_IO_MARKETPLACE;
   if (looksrareV2.isCorrectDomain(domain)) return PROTOCOL_ID.LOOKSRARE_EXCHANGE_V2;
   if (looksrare.isCorrectDomain(domain)) return PROTOCOL_ID.LOOKSRARE_EXCHANGE;
+  if (raribleV2.isCorrectDomain(domain)) return PROTOCOL_ID.RARIBLE_EXCHANGE_V2;
 
   return;
 };
@@ -54,6 +59,9 @@ export default async function visualize<T extends object>(
 
     case PROTOCOL_ID.BLUR_IO_MARKETPLACE:
       return blurIo.visualize(message as BlurIoOrder, domain);
+
+    case PROTOCOL_ID.RARIBLE_EXCHANGE_V2:
+      return raribleV2.visualize(message as RaribleV2Order, domain);
 
     default:
       if (erc20Permit.isERC20Permit(message)) {
