@@ -1,8 +1,9 @@
 import { oneinchFusionTypes } from "../../../src/types";
 
-// Test data refers to fusion-sdk code.
-// @see https://github.com/1inch/fusion-sdk/blob/4b76e9c232276742f879f3495e452dfc667b5a3a/src/fusion-order/fusion-order.spec.ts#L12-L61
-
+/**
+ * @dev test data for 1inch fusion successful order
+ * @see https://github.com/1inch/fusion-sdk/blob/4b76e9c232276742f879f3495e452dfc667b5a3a/src/fusion-order/fusion-order.spec.ts#L12-L61
+ */
 const oneinchFusionOrder: oneinchFusionTypes.OneinchFusionOrder = {
   salt: "45118768841948961586167738353692277076075522015101619148498725069326976558864",
   makerAsset: "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
