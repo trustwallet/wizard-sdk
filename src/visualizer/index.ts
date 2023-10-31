@@ -3,15 +3,19 @@ import { PermitMessage } from "../types";
 import { SeaPortPayload } from "../types/seaport";
 import { BlurIoOrder } from "../types/blur";
 import { LooksrareMakerOrderWithEncodedParams } from "../types/looksrare";
+import { LooksRareV2MakerOrder } from "../types/looksrare-v2";
+import { OneInchOrder } from "../types/oneinch";
+import { RaribleOrder } from "../types/rarible";
 
 import blurIo from "./blur-io";
 import erc20Permit from "./erc20-permit";
 import looksrare from "./looksrare";
 import looksrareV2 from "./looksrare-v2";
+import rarible from "./rarible";
+import oneinch from "./oneinch";
 import seaport from "./seaport";
 import { Domain, VisualizationResult } from "../types/visualizer";
 import { WizardError } from "../utils";
-import { LooksRareV2MakerOrder } from "../types/looksrare-v2";
 
 export enum PROTOCOL_ID {
   OPENSEA_SEAPORT = "OPENSEA_SEAPORT",
@@ -19,6 +23,8 @@ export enum PROTOCOL_ID {
   LOOKSRARE_EXCHANGE_V2 = "LOOKSRARE_EXCHANGE_V2",
   BLUR_IO_MARKETPLACE = "BLUR_IO_MARKETPLACE",
   ERC20_PERMIT = "ERC20_PERMIT",
+  RARIBLE = "EXCHANGE",
+  ONE_INCH = "ONE_INCH",
 }
 
 export const getProtocolId = (domain: Domain): PROTOCOL_ID | undefined => {
@@ -26,7 +32,8 @@ export const getProtocolId = (domain: Domain): PROTOCOL_ID | undefined => {
   if (blurIo.isCorrectDomain(domain)) return PROTOCOL_ID.BLUR_IO_MARKETPLACE;
   if (looksrareV2.isCorrectDomain(domain)) return PROTOCOL_ID.LOOKSRARE_EXCHANGE_V2;
   if (looksrare.isCorrectDomain(domain)) return PROTOCOL_ID.LOOKSRARE_EXCHANGE;
-
+  if (oneinch.isCorrectDomain(domain)) return PROTOCOL_ID.ONE_INCH;
+  if (rarible.isCorrectDomain(domain)) return PROTOCOL_ID.RARIBLE;
   return;
 };
 
@@ -54,6 +61,12 @@ export default async function visualize<T extends object>(
 
     case PROTOCOL_ID.BLUR_IO_MARKETPLACE:
       return blurIo.visualize(message as BlurIoOrder, domain);
+
+    case PROTOCOL_ID.ONE_INCH:
+      return oneinch.visualize(message as OneInchOrder, domain);
+
+    case PROTOCOL_ID.RARIBLE:
+      return rarible.visualize(message as RaribleOrder, domain);
 
     default:
       if (erc20Permit.isERC20Permit(message)) {
