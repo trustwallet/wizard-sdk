@@ -6,7 +6,7 @@ import { PROTOCOL_ID } from "..";
 import { ASSET_TYPE, AssetInOut } from "../../types";
 import { OneInchLimitOrderV3 } from "../../types/oneinch";
 import { Domain, EIP712Protocol, VisualizationResult } from "../../types/visualizer";
-import { WizardError, getPaymentAssetType } from "../../utils";
+import { WizardError, ZERO_ADDRESS, getPaymentAssetType } from "../../utils";
 import { getAuctionEndTime, getAuctionStartTime } from "./utils";
 
 const { ERC1155, ERC721 } = ASSET_TYPE;
@@ -27,8 +27,20 @@ export const visualize = (
   return {
     protocol: PROTOCOL_ID.ONE_INCH,
     // If order is an ask, user is selling an NFT for an asset in return
-    assetsIn: [],
-    assetsOut: [],
+    assetsIn: [
+      {
+        address: message.takerAsset,
+        type: message.takerAsset == ZERO_ADDRESS ? ASSET_TYPE.NATIVE : ASSET_TYPE.ERC20,
+        amounts: [message.takingAmount],
+      },
+    ],
+    assetsOut: [
+      {
+        address: message.makerAsset,
+        type: message.makerAsset == ZERO_ADDRESS ? ASSET_TYPE.NATIVE : ASSET_TYPE.ERC20,
+        amounts: [message.makingAmount],
+      },
+    ],
     liveness: {
       from: Number(getAuctionStartTime(message.salt)),
       to: Number(getAuctionEndTime(message.salt)),
