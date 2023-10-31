@@ -8,17 +8,22 @@ import { BytesLike } from "ethers";
 export type OneInchLimitOrderV3 = {
   // Contains of auction start time, auction duration, initial rate bump, fee and some unique value
   salt: string;
-  // Address of the maker asset
+  // Address of the asset user want to sell
   makerAsset: string;
-  // Address of the taker asset
+  // Address of the asset user want to buy
   takerAsset: string;
   // An address of the maker (wallet or contract address)
   maker: string;
-  /* An address of the wallet or contract who will receive filled amount. If it contains a zero address, 
-   * which means that taker asset will be sent to the address of the creator of the limit order. 
-     If user set any other value, then taker asset will be sent to the specified address */
+  /**
+   * If it contains a zero address, which means that taker asset will be sent to the address of the creator of the
+   * limit order. If user set any other value, then taker asset will be sent to the specified address
+   */
   receiver: string;
-  // An address of the settlement contract
+  /**
+   * If it contains a zero address, which means that a limit order is available for everyone to fill.
+   *  If user set any other value, then the limit order will be available for execution only
+   *  for the specified address (private limit order)
+   */
   allowedSender: string;
   // Order maker's token amount
   makingAmount: string;

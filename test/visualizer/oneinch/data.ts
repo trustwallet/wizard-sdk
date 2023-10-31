@@ -7,8 +7,8 @@ const oneinchNormalLimitOrder: OneInchLimitOrderV3 = {
   maker: "0xa88800cd213da5ae406ce248380802bd53b47647",
   receiver: "0x11799622F4D98A24514011E8527B969f7488eF47",
   allowedSender: "0xd9145CCE52D386f254917e481eB44e9943F39138",
-  takingAmount: "1000000000000000000",
-  makingAmount: "1420000000",
+  takingAmount: "990000000000000000",
+  makingAmount: "25000000000000",
   offsets: "0",
   interactions: "0x000000000000000000000000000000090000000000000000000000000000008e",
 };
