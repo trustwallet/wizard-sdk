@@ -28,7 +28,10 @@ describe("oneinch", () => {
   });
 
   it("should successfully visualize oneinch limit order", async () => {
-    const result = await visualize(oneinchNormalLimitOrder, oneinchDomain);
+    const result = await visualize<OneInchLimitOrderV3>(
+      oneinchNormalLimitOrder,
+      oneinchDomain
+    );
 
     expect(result).toEqual({
       protocol: "ONE_INCH",
