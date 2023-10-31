@@ -48,20 +48,26 @@ const supportedChains = [
   10, // Optimism
   250, // Fantom
   100, // Gnosis
+  1313161554, // Aurora,
+  8217, // Klaytn
+  42, // Kovan
 ];
 
 /**
  * @see https://github.com/1inch/fusion-sdk/blob/main/src/constants.ts
  */
 const addressesBook = [
-  "0xa88800cd213da5ae406ce248380802bd53b47647", // Ethereum Mainnet Settlement
-  "0x1d0ae300eec4093cee4367c00b228d10a5c7ac63", // Binance Smart Chain Settlement
-  "0x1e8ae092651e7b14e4d0f93611267c5be19b8b9f", // Polygon Settlement
-  "0x4bc3e539aaa5b18a82f6cd88dc9ab0e113c63377", // Arbitrum Settlement
-  "0x7731f8df999a9441ae10519617c24568dc82f697", // Avalanche Settlement
-  "0xd89adc20c400b6c45086a7f6ab2dca19745b89c2", // Optimism Settlement
-  "0xa218543cc21ee9388fa1e509f950fd127ca82155", // Fantom Settlement
-  "0xcbdb7490968d4dbf183c60fc899c2e9fbd445308", // Gnosis Settlement
+  "0x119c71D3BbAC22029622cbaEc24854d3D32D2828", // Ethereum Mainnet LimitOrderProtocol
+  "0x1e38Eff998DF9d3669E32f4ff400031385Bf6362", // Binance Smart Chain LimitOrderProtocol
+  "0x94Bc2a1C732BcAd7343B25af48385Fe76E08734f", // Polygon LimitOrderProtocol
+  "0x7F069df72b7A39bCE9806e3AfaF579E54D8CF2b9", // Arbitrum LimitOrderProtocol
+  "0x0F85A912448279111694F4Ba4F85dC641c54b594", // Avalanche LimitOrderProtocol
+  "0x11431a89893025D2a48dCA4EddC396f8C8117187", // Optimism LimitOrderProtocol
+  "0x11DEE30E710B8d4a8630392781Cc3c0046365d4c", // Fantom LimitOrderProtocol
+  "0x54431918cEC22932fCF97E54769F4E00f646690F", // Gnosis LimitOrderProtocol
+  "0xA31bB36c5164B165f9c36955EA4CcBaB42B3B28E", // Aurora LimitOrderProtocol
+  "0xE295aD71242373C37C5FdA7B57F26f9eA1088AFe", // Klaytn LimitOrderProtocol
+  "0xa218543cc21ee9388Fa1E509F950FD127Ca82155", // Kovan LimitOrderProtocol
 ].map((e) => e.toLocaleLowerCase());
 
 const looksrare: EIP712Protocol<LooksRareV2MakerOrder> = {
