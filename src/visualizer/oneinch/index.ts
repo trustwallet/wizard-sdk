@@ -30,8 +30,8 @@ export const visualize = (
     assetsIn: [],
     assetsOut: [],
     liveness: {
-      from: getAuctionStartTime(message.salt),
-      to: getAuctionEndTime(message.salt),
+      from: Number(getAuctionStartTime(message.salt)),
+      to: Number(getAuctionEndTime(message.salt)),
     },
     approvals: [],
   };
