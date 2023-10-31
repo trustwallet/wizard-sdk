@@ -1,6 +1,6 @@
-import { OneInchFusionOrderV3 } from "../../../src/types/oneinch";
+import { OneInchFusionOrder } from "../../../src/types/oneinch";
 
-const oneinchNormalLimitOrder: OneInchFusionOrderV3 = {
+const oneinchNormalLimitOrder: OneInchFusionOrder = {
   salt: "45118768841948961586167738353692277076075522015101619148498725069326976558864",
   makerAsset: "0x5f04D47D698F79d76F85E835930170Ff4c4EBdB7",
   takerAsset: "0x000075B45Dff84C00Cf597d5C3E766108CeA0000",

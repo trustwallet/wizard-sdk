@@ -5,7 +5,7 @@ import { BytesLike } from "ethers";
  * @see https://portal.1inch.dev/documentation/fusion/fusion-sdk/for-resolvers/auction-calculator
  */
 
-export type OneInchFusionOrderV3 = {
+export type OneInchFusionOrder = {
   // Contains of auction start time, auction duration, initial rate bump, fee and some unique value
   salt: string;
   // Address of the asset user want to sell
