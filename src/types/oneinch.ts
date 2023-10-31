@@ -4,7 +4,7 @@ import { BytesLike } from "ethers";
  * @dev type taken from 1inch contract
  * @see https://portal.1inch.dev/documentation/fusion/fusion-sdk/for-resolvers/auction-calculator
  */
-export type LimitOrderV3Struct = {
+export type OneInchLimitOrderV3 = {
   //a unique value necessary to be able to create limit orders with the same parameters and different hashes
   salt: string;
   // token contract address of the asset user want to sell
