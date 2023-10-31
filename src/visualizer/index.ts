@@ -4,7 +4,7 @@ import { SeaPortPayload } from "../types/seaport";
 import { BlurIoOrder } from "../types/blur";
 import { LooksrareMakerOrderWithEncodedParams } from "../types/looksrare";
 import { LooksRareV2MakerOrder } from "../types/looksrare-v2";
-import { OneInchOrder } from "../types/oneinch";
+import { OneInchLimitOrderV3 } from "../types/oneinch";
 import { RaribleOrder } from "../types/rarible";
 
 import blurIo from "./blur-io";
@@ -63,7 +63,7 @@ export default async function visualize<T extends object>(
       return blurIo.visualize(message as BlurIoOrder, domain);
 
     case PROTOCOL_ID.ONE_INCH:
-      return oneinch.visualize(message as OneInchOrder, domain);
+      return oneinch.visualize(message as OneInchLimitOrderV3, domain);
 
     case PROTOCOL_ID.RARIBLE:
       return rarible.visualize(message as RaribleOrder, domain);

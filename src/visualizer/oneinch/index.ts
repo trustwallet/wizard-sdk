@@ -3,7 +3,7 @@
  */
 
 import { PROTOCOL_ID } from "..";
-import { ASSET_TYPE, AssetInOut, oneinch } from "../../types";
+import { ASSET_TYPE, AssetInOut } from "../../types";
 import { OneInchLimitOrderV3 } from "../../types/oneinch";
 import { Domain, EIP712Protocol, VisualizationResult } from "../../types/visualizer";
 import { WizardError, getPaymentAssetType } from "../../utils";
@@ -31,9 +31,9 @@ export const visualize = (
     assetsOut: [],
     liveness: {
       from: Number(getAuctionStartTime(message.salt)),
-      to: Number(getAuctionEndTime(message.salt))
+      to: Number(getAuctionEndTime(message.salt)),
     },
-    approvals: []
+    approvals: [],
   };
 };
 
@@ -51,7 +51,7 @@ const supportedChains = [
   100, // Gnosis
   1313161554, // Aurora,
   8217, // Klaytn
-  42 // Kovan
+  42, // Kovan
 ];
 
 /**
@@ -68,11 +68,11 @@ const addressesBook = [
   "0x54431918cEC22932fCF97E54769F4E00f646690F", // Gnosis LimitOrderProtocol
   "0xA31bB36c5164B165f9c36955EA4CcBaB42B3B28E", // Aurora LimitOrderProtocol
   "0xE295aD71242373C37C5FdA7B57F26f9eA1088AFe", // Klaytn LimitOrderProtocol
-  "0xa218543cc21ee9388Fa1E509F950FD127Ca82155" // Kovan LimitOrderProtocol
-].map(e => e.toLocaleLowerCase());
+  "0xa218543cc21ee9388Fa1E509F950FD127Ca82155", // Kovan LimitOrderProtocol
+].map((e) => e.toLocaleLowerCase());
 
 const oneinch: EIP712Protocol<OneInchLimitOrderV3> = {
   isCorrectDomain,
-  visualize
+  visualize,
 };
 export default oneinch;
