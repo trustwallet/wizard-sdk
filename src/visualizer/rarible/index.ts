@@ -63,8 +63,8 @@ export const visualize = (message: RaribleOrder, domain: Domain): VisualizationR
     assetsIn: assetIn,
     assetsOut: assetOut,
     liveness: {
-      from: message.start,
-      to: message.end,
+      from: Number(message.start),
+      to: Number(message.end),
     },
     approvals: [],
   };

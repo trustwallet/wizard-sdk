@@ -6,7 +6,7 @@ export type AssetType = {
 };
 export type Asset = {
   assetType: AssetType;
-  value: number;
+  value: string;
 };
 
 export type RaribleOrder = {
@@ -14,9 +14,9 @@ export type RaribleOrder = {
   makeAsset: Asset;
   taker: string;
   takeAsset: Asset;
-  start: number;
-  end: number;
-  salt: number;
+  start: string;
+  end: string;
+  salt: string;
   dataType: string;
   data: BytesLike;
 };
