@@ -4,6 +4,9 @@ import { RaribleV2AssetType } from "../../types/rarible-v2";
 import { ASSET_TYPE, Asset } from "../../types/index";
 import { ZERO_ADDRESS } from "../../utils";
 
+/**
+ * @see https://github.com/rarible/sdk/blob/a04dd75832a7110a91371afc8721b034d5b35dea/packages/ethereum/sdk/src/order/asset-type-to-struct.ts#L5
+ */
 export const decodeAssetType = (assetType: RaribleV2AssetType): Asset => {
   const rarribleAssetType = getRarribleAssetType(assetType);
 

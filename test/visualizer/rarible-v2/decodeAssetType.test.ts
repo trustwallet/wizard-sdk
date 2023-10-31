@@ -1,6 +1,10 @@
 import { ZERO_ADDRESS } from "../../../src/utils";
 import { decodeAssetType } from "../../../src/visualizer/rarible-v2/decodeAssetType";
 
+/**
+ * @dev test data was referenced here
+ * @see https://github.com/rarible/sdk/blob/a04dd75832a7110a91371afc8721b034d5b35dea/packages/ethereum/sdk/src/order/asset-type-to-struct.test.ts#L9-L72
+ */
 describe("decodeAssetType", () => {
   it("should decode ETH asset type", () => {
     const assetType = {
