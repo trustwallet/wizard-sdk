@@ -11,7 +11,7 @@ import {
 
 describe("rarible", () => {
   const raribleDomain: Domain = {
-    verifyingContract: "0x0000000000E655fAe4d56241588680F86E3b2377",
+    verifyingContract: "0x9757F2d2b135150BBeb65308D4a91804107cd8D6",
     name: "Exchange",
     version: "2",
     chainId: "1",
