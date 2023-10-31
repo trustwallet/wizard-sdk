@@ -22,7 +22,7 @@ export const visualize = (
   message: OneInchLimitOrderV3,
   domain: Domain
 ): VisualizationResult => {
-  if (!isCorrectDomain(domain)) throw new Error("wrong looksrare-v2 domain");
+  if (!isCorrectDomain(domain)) throw new Error("wrong oneinch domain");
 
   return {
     protocol: PROTOCOL_ID.ONE_INCH,
@@ -71,8 +71,8 @@ const addressesBook = [
   "0xa218543cc21ee9388Fa1E509F950FD127Ca82155", // Kovan LimitOrderProtocol
 ].map((e) => e.toLocaleLowerCase());
 
-const looksrare: EIP712Protocol<LooksRareV2MakerOrder> = {
+const oneinch: EIP712Protocol<OneInchLimitOrderV3> = {
   isCorrectDomain,
   visualize,
 };
-export default looksrare;
+export default oneinch;
