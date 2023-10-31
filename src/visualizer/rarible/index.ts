@@ -18,6 +18,9 @@ import {
 
 const { ERC1155, ERC721 } = ASSET_TYPE;
 
+/**
+ * @dev checks if the chain and the signer of the transaction is valid
+ */
 export const isCorrectDomain = (domain: Domain) => {
   return (
     supportedChains.includes(Number(domain.chainId)) &&
@@ -25,11 +28,18 @@ export const isCorrectDomain = (domain: Domain) => {
   );
 };
 
+/**
+ *
+ * @param message The decoded message of the rarible order to be visualized
+ * @param domain Domain of the rarible order
+ * @returns Returns the visualization result in the ERC6865 format
+ */
 export const visualize = (message: RaribleOrder, domain: Domain): VisualizationResult => {
   if (!isCorrectDomain(domain)) throw new Error("wrong rarible domain");
   let assetIn: AssetInOut[];
   let assetOut: AssetInOut[];
 
+  /** Check the type of the taker asset to build AssetIn */
   if (message.takeAsset.assetType.assetClass === getAssetClass("ETH")) {
     assetIn = buildAssetETH(message.takeAsset);
   } else if (message.takeAsset.assetType.assetClass !== getAssetClass("ERC20")) {
@@ -44,6 +54,7 @@ export const visualize = (message: RaribleOrder, domain: Domain): VisualizationR
     );
   }
 
+  /** Check the type of the maker asset to build AssetOut */
   if (message.makeAsset.assetType.assetClass === getAssetClass("ETH")) {
     assetOut = buildAssetETH(message.makeAsset);
   } else if (message.makeAsset.assetType.assetClass !== getAssetClass("ERC20")) {
@@ -58,6 +69,7 @@ export const visualize = (message: RaribleOrder, domain: Domain): VisualizationR
     );
   }
 
+  /** Returns the ERC6865 format of the order */
   return {
     protocol: PROTOCOL_ID.RARIBLE,
     assetsIn: assetIn,
