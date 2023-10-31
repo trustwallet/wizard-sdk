@@ -1,4 +1,4 @@
-import { OneInchLimitOrderV3 } from "../../../src/types/oneinch";
+import { OneInchFusionOrderV3 } from "../../../src/types/oneinch";
 import { Domain } from "../../../src/types/visualizer";
 import visualize from "../../../src/visualizer";
 import oneinch from "../../../src/visualizer/oneinch";
@@ -28,13 +28,13 @@ describe("oneinch", () => {
   });
 
   it("should successfully visualize oneinch limit order", async () => {
-    const result = await visualize<OneInchLimitOrderV3>(
+    const result = await visualize<OneInchFusionOrderV3>(
       oneinchNormalLimitOrder,
       oneinchDomain
     );
 
     expect(result).toEqual({
-      protocol: "ONE_INCH",
+      protocol: "ONE_INCH_FUSION",
       assetsIn: [
         {
           address: "0x000075B45Dff84C00Cf597d5C3E766108CeA0000",
