@@ -4,9 +4,10 @@
 
 import { PROTOCOL_ID } from "..";
 import { ASSET_TYPE, AssetInOut } from "../../types";
-import { LooksRareV2MakerOrder } from "../../types/looksrare-v2";
+import { OneInchLimitOrderV3 } from "../../types/oneinch";
 import { Domain, EIP712Protocol, VisualizationResult } from "../../types/visualizer";
 import { WizardError, getPaymentAssetType } from "../../utils";
+import { getAuctionEndTime, getAuctionStartTime } from "./utils";
 
 const { ERC1155, ERC721 } = ASSET_TYPE;
 
@@ -18,19 +19,19 @@ export const isCorrectDomain = (domain: Domain) => {
 };
 
 export const visualize = (
-  message: LooksRareV2MakerOrder,
+  message: OneInchLimitOrderV3,
   domain: Domain
 ): VisualizationResult => {
   if (!isCorrectDomain(domain)) throw new Error("wrong looksrare-v2 domain");
 
   return {
-    protocol: PROTOCOL_ID.LOOKSRARE_EXCHANGE_V2,
+    protocol: PROTOCOL_ID.ONE_INCH,
     // If order is an ask, user is selling an NFT for an asset in return
-    assetsIn: isOrderAsk ? [paymentAsset] : nftAssets,
-    assetsOut: isOrderAsk ? nftAssets : [paymentAsset],
+    assetsIn: [],
+    assetsOut: [],
     liveness: {
-      from: Number(message.startTime) * 1000,
-      to: Number(message.endTime) * 1000,
+      from: Number(getAuctionStartTime(message.salt)),
+      to: Number(getAuctionEndTime(message.salt)),
     },
     approvals: [],
   };

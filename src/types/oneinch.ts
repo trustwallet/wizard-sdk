@@ -4,7 +4,8 @@ import { BytesLike } from "ethers";
  * @dev type taken from 1inch contract
  * @see https://portal.1inch.dev/documentation/fusion/fusion-sdk/for-resolvers/auction-calculator
  */
-export type LimitOrderV3Struct = {
+
+export type OneInchLimitOrderV3 = {
   // Contains of auction start time, auction duration, initial rate bump, fee and some unique value
   salt: string;
   // Address of the maker asset
