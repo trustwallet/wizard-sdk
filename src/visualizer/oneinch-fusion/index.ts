@@ -7,28 +7,6 @@ import { getAuctionTime } from "./getAuctionTime";
 
 const { NATIVE } = ASSET_TYPE;
 
-/**
- * @dev 1inch fusion verifying contract address
- * @see https://github.com/1inch/fusion-sdk/blob/4b76e9c232276742f879f3495e452dfc667b5a3a/src/constants.ts#L50
- */
-export const ONEINCH_FUSION_VERIFYING_CONTRACT =
-  "0x1111111254eeb25477b68fb85ed929f73a960582";
-
-/**
- * @dev 1inch fusion supported chains
- * @see https://github.com/1inch/fusion-sdk/blob/4b76e9c232276742f879f3495e452dfc667b5a3a/src/constants.ts#L6-L15
- */
-export const ONEINCH_FUSION_SUPPORTED_CHAINS = [
-  1, //Ethereum
-  137, //Polygon
-  56, //Binance
-  42161, //Arbitrum One
-  43114, //Avalanche C-Chain
-  10, //Optimism
-  250, //Fantom
-  100, //Gnosis
-];
-
 export const isCorrectDomain = (domain: Domain) => {
   return (
     ONEINCH_FUSION_SUPPORTED_CHAINS.includes(Number(domain.chainId)) &&
@@ -73,6 +51,26 @@ export const visualize = (
     approvals: [],
   };
 };
+
+/**
+ * @see https://github.com/1inch/fusion-sdk/blob/4b76e9c232276742f879f3495e452dfc667b5a3a/src/constants.ts#L50
+ */
+export const ONEINCH_FUSION_VERIFYING_CONTRACT =
+  "0x1111111254eeb25477b68fb85ed929f73a960582";
+
+/**
+ * @see https://github.com/1inch/fusion-sdk/blob/4b76e9c232276742f879f3495e452dfc667b5a3a/src/constants.ts#L6-L15
+ */
+export const ONEINCH_FUSION_SUPPORTED_CHAINS = [
+  1, //Ethereum
+  137, //Polygon
+  56, //Binance
+  42161, //Arbitrum One
+  43114, //Avalanche C-Chain
+  10, //Optimism
+  250, //Fantom
+  100, //Gnosis
+];
 
 const addressesBook = [ONEINCH_FUSION_VERIFYING_CONTRACT].map((e) =>
   e.toLocaleLowerCase()
