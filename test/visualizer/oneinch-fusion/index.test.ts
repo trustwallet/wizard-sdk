@@ -56,8 +56,8 @@ describe("oneinch-fusion", () => {
         },
       ],
       liveness: {
-        from: 1673548149,
-        to: 1673548329,
+        from: 1673548149000,
+        to: 1673548329000,
       },
       approvals: [],
     });
