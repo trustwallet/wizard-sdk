@@ -11,7 +11,7 @@ import {
 
 describe("rarible", () => {
   const raribleDomain: Domain = {
-    verifyingContract: "0x9757F2d2b135150BBeb65308D4a91804107cd8D6",
+    verifyingContract: "0x9757F2d2b135150BBeb65308D4a91804107cd8D6".toLowerCase(),
     name: "Exchange",
     version: "2",
     chainId: "1",
@@ -47,7 +47,7 @@ describe("rarible", () => {
         },
         raribleDomain
       )
-    ).rejects.toThrowError("unknown rarible assetClass: XYZ");
+    ).rejects.toThrowError(`unknown rarible asset class: ${getAssetClass("XYZ")}`);
   });
 
   it("should successfully visualize ERC20 In ERC1155 Out order", async () => {
@@ -57,14 +57,14 @@ describe("rarible", () => {
       protocol: "EXCHANGE",
       assetsIn: [
         {
-          address: "0xf8e81D47203A594245E36C48e151709F0C19fBe8",
+          address: "0xf8e81D47203A594245E36C48e151709F0C19fBe8".toLowerCase(),
           type: "ERC20",
           amounts: ["10000000000000000000"],
         },
       ],
       assetsOut: [
         {
-          address: "0xd9145cce52d386f254917e481eb44e9943f39138",
+          address: "0xd9145cce52d386f254917e481eb44e9943f39138".toLowerCase(),
           type: "ERC1155",
           id: "69",
           amounts: ["6"],
@@ -76,7 +76,7 @@ describe("rarible", () => {
   });
 
   it("should successfully visualize ETH In ERC721 Out order", async () => {
-    const result = await visualize<RaribleOrder>(raribleERC20InERC1155Out, raribleDomain);
+    const result = await visualize<RaribleOrder>(raribleETHInERC721Out, raribleDomain);
 
     expect(result).toEqual({
       protocol: "EXCHANGE",
@@ -89,7 +89,7 @@ describe("rarible", () => {
       ],
       assetsOut: [
         {
-          address: "0xd9145cce52d386f254917e481eb44e9943f39138",
+          address: "0xd9145cce52d386f254917e481eb44e9943f39138".toLowerCase(),
           type: "ERC721",
           id: "69",
           amounts: ["1"],
@@ -107,7 +107,7 @@ describe("rarible", () => {
       protocol: "EXCHANGE",
       assetsIn: [
         {
-          address: "0xd9145cce52d386f254917e481eb44e9943f39138",
+          address: "0xd9145cce52d386f254917e481eb44e9943f39138".toLowerCase(),
           type: "ERC1155",
           id: "69",
           amounts: ["6"],

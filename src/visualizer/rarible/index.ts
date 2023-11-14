@@ -42,30 +42,30 @@ export const visualize = (message: RaribleOrder, domain: Domain): VisualizationR
   /** Check the type of the taker asset to build AssetIn */
   if (message.takeAsset.assetType.assetClass === getAssetClass("ETH")) {
     assetIn = buildAssetETH(message.takeAsset);
-  } else if (message.takeAsset.assetType.assetClass !== getAssetClass("ERC20")) {
+  } else if (message.takeAsset.assetType.assetClass === getAssetClass("ERC20")) {
     assetIn = buildAssetERC20(message.takeAsset);
-  } else if (message.takeAsset.assetType.assetClass !== getAssetClass("ERC721")) {
+  } else if (message.takeAsset.assetType.assetClass === getAssetClass("ERC721")) {
     assetIn = buildAssetERC721(message.takeAsset);
-  } else if (message.takeAsset.assetType.assetClass !== getAssetClass("ERC1155")) {
+  } else if (message.takeAsset.assetType.assetClass === getAssetClass("ERC1155")) {
     assetIn = buildAssetERC1155(message.takeAsset);
   } else {
     throw new WizardError(
-      `unknow rarible asset class: ${message.takeAsset.assetType.assetClass}`
+      `unknown rarible asset class: ${message.takeAsset.assetType.assetClass}`
     );
   }
 
   /** Check the type of the maker asset to build AssetOut */
   if (message.makeAsset.assetType.assetClass === getAssetClass("ETH")) {
     assetOut = buildAssetETH(message.makeAsset);
-  } else if (message.makeAsset.assetType.assetClass !== getAssetClass("ERC20")) {
+  } else if (message.makeAsset.assetType.assetClass === getAssetClass("ERC20")) {
     assetOut = buildAssetERC20(message.makeAsset);
-  } else if (message.makeAsset.assetType.assetClass !== getAssetClass("ERC721")) {
+  } else if (message.makeAsset.assetType.assetClass === getAssetClass("ERC721")) {
     assetOut = buildAssetERC721(message.makeAsset);
-  } else if (message.makeAsset.assetType.assetClass !== getAssetClass("ERC1155")) {
+  } else if (message.makeAsset.assetType.assetClass === getAssetClass("ERC1155")) {
     assetOut = buildAssetERC1155(message.makeAsset);
   } else {
     throw new WizardError(
-      `unknow rarible asset class: ${message.makeAsset.assetType.assetClass}`
+      `unknown rarible asset class: ${message.makeAsset.assetType.assetClass}`
     );
   }
 
