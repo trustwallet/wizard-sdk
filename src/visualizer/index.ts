@@ -22,7 +22,6 @@ export enum PROTOCOL_ID {
   BLUR_IO_MARKETPLACE = "BLUR_IO_MARKETPLACE",
   ERC20_PERMIT = "ERC20_PERMIT",
   RARIBLE = "EXCHANGE",
-  ONE_INCH = "ONE_INCH",
 }
 
 export const getProtocolId = (domain: Domain): PROTOCOL_ID | undefined => {
