@@ -11,7 +11,6 @@ import blurIo from "./blur-io";
 import erc20Permit from "./erc20-permit";
 import looksrare from "./looksrare";
 import looksrareV2 from "./looksrare-v2";
-import rarible from "./rarible";
 import oneinch from "./oneinch";
 import seaport from "./seaport";
 import { Domain, VisualizationResult } from "../types/visualizer";
@@ -33,7 +32,6 @@ export const getProtocolId = (domain: Domain): PROTOCOL_ID | undefined => {
   if (looksrareV2.isCorrectDomain(domain)) return PROTOCOL_ID.LOOKSRARE_EXCHANGE_V2;
   if (looksrare.isCorrectDomain(domain)) return PROTOCOL_ID.LOOKSRARE_EXCHANGE;
   if (oneinch.isCorrectDomain(domain)) return PROTOCOL_ID.ONEINCH_FUSION;
-  if (rarible.isCorrectDomain(domain)) return PROTOCOL_ID.RARIBLE;
   return;
 };
 
@@ -64,9 +62,6 @@ export default async function visualize<T extends object>(
 
     case PROTOCOL_ID.ONEINCH_FUSION:
       return oneinch.visualize(message as OneInchFusionOrder, domain);
-
-    case PROTOCOL_ID.RARIBLE:
-      return rarible.visualize(message as RaribleOrder, domain);
 
     default:
       if (erc20Permit.isERC20Permit(message)) {

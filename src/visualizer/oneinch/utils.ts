@@ -11,4 +11,4 @@ export const getAuctionStartTime = (salt: string) =>
   (BigInt(salt) & _TIME_START_MASK) >> _TIME_START_SHIFT;
 
 export const getAuctionEndTime = (salt: string) =>
-  (getAuctionStartTime(salt) + (BigInt(salt) & _DURATION_MASK)) >> _DURATION_SHIFT;
+  getAuctionStartTime(salt) + ((BigInt(salt) & _DURATION_MASK) >> _DURATION_SHIFT);
