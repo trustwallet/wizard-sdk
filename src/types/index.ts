@@ -2,6 +2,7 @@ export * as blurTypes from "./blur";
 export * as looksrareTypes from "./looksrare";
 export * as seaportTypes from "./seaport";
 export * as visualizer from "./visualizer";
+export * as oneinch from "./oneinch";
 
 export enum ASSET_TYPE {
   NATIVE = "NATIVE",
